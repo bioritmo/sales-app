@@ -1,0 +1,30 @@
+@import '../../../shared/style/variables.scss';
+
+.container-main {
+  background-color: #eeeeee;
+  width: 100%;
+  height: auto;
+  border: 0px;
+  position: absolute;
+}
+
+.start-options {
+  height: 40em;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.start-game-action {
+  text-align: center;
+}
+
+.link {
+  color: $primary-color;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
