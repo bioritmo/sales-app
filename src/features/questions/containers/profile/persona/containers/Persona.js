@@ -3,19 +3,18 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // material
-import RaisedButton from 'material-ui/RaisedButton';
-import { AlertMsg, Loader } from '../../../../ui';
+import { AlertMsg, Loader } from '../../../../../../ui';
 
 // internal
-import * as actions from '../../../../state/main/actions';
-import FSymbol from '../../../../assets/imgs/f_symbol.png'
-import MSymbol from '../../../../assets/imgs/m_symbol.png'
+import { Logo } from '../../../../../../ui'
+import FSymbol from '../../assets/imgs/f_symbol.png'
+import MSymbol from '../../assets/imgs/m_symbol.png'
 //style
 import './Persona.scss';
-import { Link } from 'react-router-dom';
+import Question from '../../../../components/question/Question';
+import NextButton from '../../../../components/nextButton/NextButton';
 
 const Persona = () => {
-  const dispatch = useDispatch();
   const isLoading = useSelector(state => state.main.isLoading || false);
   const message = useSelector(state => state.main.message);
 
@@ -43,14 +42,11 @@ const Persona = () => {
     <div className="select-avatar-container">
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
-
+      <Logo />
       <div className="name-avatar-container">
-        <Animated animationInDuration="1500" animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-          <p className="title">
-            ENTRE COM SEU NOME
-          </p>
-        </Animated>
-          <div className="name-container">
+        <Question question="ENTRE COM O SEU NOME" />
+        
+        <div className="sex-container">
           <Animated style={{display: 'flex'}} animationInDelay="500" animationInDuration="1000" animationIn="fadeIn" isVisible={true}>
             <input 
               className="input-name"
@@ -80,17 +76,7 @@ const Persona = () => {
           </Animated>
           </div>
           { isSelectAvatar && (
-            <>
-              <Animated animationInDelay="700" animationInDuration="1000" animationIn="bounceIn" isVisible={true}>
-                <div Style="margin-top: 70px;">
-                  <Link to="/home" Style="text-decoration: none">
-                    <div className="btn-next">
-                      <p className="btn-next-text">Prosseguir {'>>'}</p>
-                    </div>
-                  </Link>
-                </div>
-              </Animated>
-            </>
+            <NextButton link='/avatar' />
           )}
       </div>
     </div>

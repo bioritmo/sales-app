@@ -2,18 +2,20 @@
 
 
 .title {
-    @include neon-text($red-neon-in, $red-neon-out);
+    font-family: neon-line;
+    font-family: neon-line;
+    font-size: 35px;
+    color: gray;
 }
 
 .input-name {
-    @include neon-wrapper($red-neon-in, $red-neon-out);
-    
+    // @include neon-wrapper($red-neon-in, $red-neon-out);
+    border: solid 2px gray;
     outline: none;
-    border: none;
     font-size: 35px;
     padding: 10px;
-    background-color: black;
-    color: white; 
+    background-color: #fafafa;
+    color: gray; 
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
@@ -29,7 +31,7 @@
     align-items: center;
     justify-content: center;
     //background-image: url("../../../assets/imgs/bg.jpg");
-    background-color: black;
+    background-color: #fafafa;
     background-size: auto 100%;
 }
 
@@ -57,9 +59,9 @@
 }
 
 .sex-item-active {
-    @include neon-wrapper($red-neon-in, $red-neon-out);
+    border: solid 2px gray;
+    border-radius: 1.5rem;
     padding: 20px;
-    border: solid 1px white;
     border-radius: 10px;
     margin: 10px;
     cursor: pointer;
@@ -67,28 +69,33 @@
 }
 
 .btn-next {
-    @include neon-wrapper($red-neon-in, $red-neon-out);
+    text-transform: uppercase;
+    border: solid 1px red;
+    font-family: neon-line;
     padding: 20px;
     cursor: pointer;
     width: 300px;
     margin: 0 auto;
     text-align: center;
     border-radius: 4px;
+    border-top: solid 8px red;
 }
 
 .btn-next-text {
-    @include neon-text($red-neon-in, $red-neon-out);
+    // @include neon-text($red-neon-in, $red-neon-out);
     font-size: 30px;
+    color: red;
     text-transform: uppercase;
     font-family: neon-line;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 .btn-ok-name {
     margin-left: 10px;
     border: none;
-    background-color: black;
+    background-color: #fafafa;
     color: white;
     font-size: 20px;
     font-weight: bold;

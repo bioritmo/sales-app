@@ -1,3 +1,6 @@
+$bg-dark-blue: #010108;
+$bg-light-blue: #00004c;
+
 $primary-color: #1445b3;
 
 $red-neon-in: #e50b0b;
@@ -17,6 +20,9 @@ $blue-neon-out: #5782f2;
   src: url("../../assets/fonts/hello-denver-display.denver-display-regular-regular.ttf");
 }
 
+@mixin background-gradient($colorIn, $colorOut) {
+  background-image: linear-gradient(90deg, $colorIn, $colorOut);
+}
 
 @mixin neon-wrapper($colorIn, $colorOut) {
   box-shadow:

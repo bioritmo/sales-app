@@ -1,0 +1,52 @@
+@import "../../../../../../shared/style/variables.scss";
+
+.input-name {
+  border: solid 2px #3d8bd0;
+  outline: none;
+  font-size: 35px;
+  padding: 20px;
+  background-color: transparent;
+  color: #a9a6a6;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sex-container {
+  margin: 30px auto;
+  width: 90%;
+}
+
+.select-sex-container {
+  display: flex;
+  margin-top: 80px;
+  justify-content: center;
+}
+
+.sex-item {
+  padding: 8em;
+  border: solid 1px white;
+  margin: 10px;
+  cursor: pointer;
+
+  > .active {
+      @include neon-wrapper($red-neon-in, $red-neon-out);
+      border-radius: 0;
+    }
+}
+
+.sex-item-active {
+  border: solid 5px #3d8bd0;
+  padding: 8em;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+    
+}
+
+.name-avatar-container {
+  width: 100%;
+  margin-top: 20em;
+}
+

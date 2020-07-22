@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // material
 import RaisedButton from 'material-ui/RaisedButton';
+import { logo } from '../../../../assets/imgs/logo.png'
 import { AlertMsg, Loader } from '../../../../ui';
 
 // internal
@@ -22,6 +23,7 @@ const SelectAvatar = () => {
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
 
       <div className="name-avatar-container">
+        <img src={logo} />
         <p className="second-question">Selecione a imagem melhor te descreve</p>
         <div Style="width: 100%; height: 100%; margin-top: 120px;">
           <Animated animationInDuration="1000" animationIn="fadeInLeft" isVisible={true}>

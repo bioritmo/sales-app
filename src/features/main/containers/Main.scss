@@ -1,11 +1,10 @@
 @import '../../../shared/style/variables.scss';
 
 body {
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
   margin: 0;
   padding: 0;
-  background-image: url('../../../assets/imgs/wall.jpg');
   background-size: contain;
-  //background-color: black;
 }
 
 .container-main {
@@ -36,20 +35,23 @@ body {
 }
 
 .btn-start {
-  @include neon-wrapper($blue-neon-in, $blue-neon-out);
+  border: solid 1px #01633d;
+  border-top: solid 8px #01633d;
+  color: #01633d;
   padding: 20px;
   cursor: pointer;
   width: 300px;
   margin: 0 auto;
   text-align: center;
   border-radius: 4px;
+  background-color: #0dc37d;
 }
 
 .btn-start-text {
-  @include neon-text($blue-neon-in, $blue-neon-out);
   font-size: 30px;
   text-transform: uppercase;
-  font-family: neon-line;
+  font-weight: bold;
+  font-family: 'Roboto';
   margin: 0;
   padding: 0;
 }
