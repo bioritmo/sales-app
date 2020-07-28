@@ -1,3 +1,5 @@
+export const nameStorage = '@bioData';
+
 const questions = {
 	"questions": [
         {

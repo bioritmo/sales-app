@@ -1,18 +1,24 @@
 @import '../../../shared/style/variables.scss';
 
 body {
-  @include background-gradient($bg-dark-blue, $bg-light-blue);
+  // @include background-gradient($bg-dark-blue, $bg-light-blue);
   margin: 0;
   padding: 0;
-  background-size: contain;
 }
 
 .container-main {
-  background-color: #eeeeee;
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
   width: 100%;
-  height: auto;
+  height: 100%;
   border: 0px;
   position: absolute;
+}
+
+.bg-start {
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../assets/imgs/img_start.png');
+  background-size: contain;
 }
 
 .start-options {
@@ -31,7 +37,7 @@ body {
 
 .start-game-action {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 63em;
 }
 
 .btn-start {
@@ -54,4 +60,8 @@ body {
   font-family: 'Roboto';
   margin: 0;
   padding: 0;
+}
+
+.img-start {
+  width: 60em;
 }
