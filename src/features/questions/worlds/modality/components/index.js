@@ -1,0 +1,1 @@
+export { default as CardSelectModality } from '../components/cardSelectModality/CardSelectModality'; 

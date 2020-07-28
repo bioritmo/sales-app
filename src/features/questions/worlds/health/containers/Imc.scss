@@ -1,0 +1,14 @@
+.response-container{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 9em;
+}
+
+.response-item {
+  width: 100%;
+  text-align: center;
+
+  &.img-left {
+    margin-left: -2em;
+  }
+}
