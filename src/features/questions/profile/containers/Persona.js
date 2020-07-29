@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // internal
-import * as actions from '../../../../state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../../ui';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { savePersona } from 'shared/utils';
 import Question from '../../components/question/Question';
 import NextButton from '../../components/nextButton/NextButton';
 import FSymbol from '../../assets/imgs/f_symbol.png';
 import MSymbol from '../../assets/imgs/m_symbol.png';
-import { savePersona } from '../../../../shared/utils';
 //style
 import './Persona.scss';
 

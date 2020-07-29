@@ -2,18 +2,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
-
 // internal
-import * as actions from '../../../../../state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../../../ui';
-import NextButton from '../../../components/nextButton/NextButton';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import NextButton from 'features/questions/components/nextButton/NextButton';
+import Question from 'features/questions/components/question/Question';
+import { saveResponseWorld } from 'shared/utils';
 import { WorldName } from '../../components/';
 import { CHALLENGE_QUESTIONS } from '../questions';
-
 //style
 import './Challenge.scss';
-import Question from '../../../components/question/Question';
-import { saveResponseWorld } from '../../../../../shared/utils';
 
 const Challenge = () => {
   const dispatch = useDispatch();
@@ -111,7 +109,9 @@ const Challenge = () => {
         </div>
         {
           selectedQtdItems === 3 && (
-            <NextButton onClick={() => saveResponse()} />
+            <div className="btn-next-container">
+              <NextButton onClick={() => saveResponse()} />
+            </div>
           )
         }
       </div>

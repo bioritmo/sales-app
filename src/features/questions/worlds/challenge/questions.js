@@ -20,7 +20,7 @@ export const CHALLENGE_QUESTIONS = {
           },
           {
             id: 3,
-            "title": "recuparar lesão",
+            "title": "recuperar lesão",
             "img": "",
           },
           {

@@ -2,18 +2,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
-
 // internal
-import * as actions from '../../../../../state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../../../ui';
-import NextButton from '../../../components/nextButton/NextButton';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import NextButton from 'features/questions/components/nextButton/NextButton';
+import Question from 'features/questions/components/question/Question';
+import muscleFront from 'assets/imgs/musculos_frontal.png'
+import muscleBack from 'assets/imgs/musculos_costas.png'
 import { WorldName } from '../../components/';
-import muscleFront from '../../../../../assets/imgs/musculos_frontal.png'
-import muscleBack from '../../../../../assets/imgs/musculos_costas.png'
-
 //style
 import './Muscle.scss';
-import Question from '../../../components/question/Question';
 
 const Muscle = () => {
   const dispatch = useDispatch();

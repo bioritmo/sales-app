@@ -2,18 +2,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
-
 // internal
-import * as actions from '../../../../../state/main/actions';
-import { AlertMsg, Loader, Logo, InputSlider, ProgressBar } from '../../../../../ui';
-import NextButton from '../../../components/nextButton/NextButton';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, InputSlider, ProgressBar } from 'ui';
+import { saveResponseWorld } from 'shared/utils';
+import NextButton from 'features/questions/components/nextButton/NextButton';
+import walking from 'assets/imgs/person_walking.png';
 import { WorldName } from '../../components/';
 import { HEALTH_QUESTIONS } from '../questions';
-import walking from '../../../../../assets/imgs/person_walking.png';
-
 //style
 import './Energy.scss';
-import { saveResponseWorld } from '../../../../../shared/utils';
 
 const HealthEnergy = () => {
   const dispatch = useDispatch();

@@ -2,19 +2,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
-
 // internal
-import * as actions from '../../../../../state/main/actions';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { saveResponseWorld } from 'shared/utils';
+import NextButton from 'features/questions/components/nextButton/NextButton';
+import Question from 'features/questions/components/question/Question';
 import { CardSelectModality } from '../components';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../../../ui';
-import NextButton from '../../../components/nextButton/NextButton';
 import { WorldName } from '../../components/';
 import { MODALITY_QUESTIONS } from '../questions';
-
 //style
 import './Modality.scss';
-import Question from '../../../components/question/Question';
-import { saveResponseWorld } from '../../../../../shared/utils';
 
 const Modality = () => {
   const dispatch = useDispatch();

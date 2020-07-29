@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // internal
-import * as actions from '../../../../state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../../ui';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { getStorageItem, saveResponseWorld } from 'shared/utils';
 import Question from '../../components/question/Question';
 import NextButton from '../../components/nextButton/NextButton';
 import { AVATAR_QUESTIONS } from '../questions';
-import { getStorageItem, saveResponseWorld } from '../../../../shared/utils';
 //style
 import './Avatar.scss';
 

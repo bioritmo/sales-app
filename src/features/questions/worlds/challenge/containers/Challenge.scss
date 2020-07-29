@@ -99,7 +99,7 @@
   font-weight: bold;
   color: black;
   overflow: hidden;
-  max-height: 2.5em;
+  max-height: 55px;
   text-transform: uppercase;
 }
 
@@ -119,4 +119,8 @@
   &.third {
     margin-top: 50px;
   }
+}
+
+.btn-next-container {
+  margin-top: -3em;
 }

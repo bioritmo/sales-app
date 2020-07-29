@@ -2,19 +2,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
-
 // internal
-import * as actions from '../../../../../state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../../../ui';
-import Question from '../../../components/question/Question';
-import NextButton from '../../../components/nextButton/NextButton';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import Question from 'features/questions/components/question/Question';
+import NextButton from 'features/questions/components/nextButton/NextButton';
+import { saveResponseWorld } from 'shared/utils';
 import { WorldName } from '../../components/';
 import { CardSelectItem, SelectItemLine } from '../components';
 import { HEALTH_QUESTIONS } from '../questions';
-
 //style
 import './Physical.scss';
-import { saveResponseWorld } from '../../../../../shared/utils';
 
 const HealthPhysical = () => {
   const dispatch = useDispatch();

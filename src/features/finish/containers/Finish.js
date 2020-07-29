@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // internal
-import * as actions from '../../../state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../ui';
-import NextButton from '../../questions/components/nextButton/NextButton';
-import Question from '../../questions/components/question/Question';
-import trophy from '../../../assets/imgs/trofeu.png';
-import { getStorageItem } from '../../../shared/utils';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import NextButton from 'features/questions/components/nextButton/NextButton';
+import Question from 'features/questions/components/question/Question';
+import trophy from 'assets/imgs/trofeu.png';
+import { getStorageItem } from 'shared/utils';
 //style
 import './Finish.scss';
 
@@ -36,7 +36,6 @@ const Finish = () => {
           <Animated animationInDelay={1500} animationInDuration={1000} animationIn="fadeIn" isVisible={true}>
             <Question question={`Pronto, ${name.toUpperCase()}!\n Suas respostas serão utilizadas para selecionarmos as melhores salas, treinos e opções para você e seus objetivos!`} />
           </Animated>
-          
         </div>
         <NextButton label='Finalizar' delay={1900} onClick={() => dispatch(actions.nextQuestion('/'))} />
       </div>

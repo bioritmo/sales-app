@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 
 // internal
-import * as actions from '../../../state/main/actions';
+import * as actions from 'state/main/actions';
 import { Link } from 'react-router-dom';
-import { AlertMsg, Loader } from '../../../ui';
-import { updateStorage, setDefaultStorage } from '../../../shared/utils';
+import { AlertMsg, Loader } from 'ui';
+import { updateStorage, setDefaultStorage } from 'shared/utils';
 //style
 import './Main.scss';
 
