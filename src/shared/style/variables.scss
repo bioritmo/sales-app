@@ -1,1 +1,61 @@
+$bg-dark-blue: #010108;
+$bg-light-blue: #00004c;
+
+$bg-dark-purple:  #0d091d;
+$bg-light-purple: #2f124a;
+
+$bg-dark-green:  #0f0c1b ;
+$bg-light-green: #173523;
+
+$bg-light-red: #3d112a;
+$bg-dark-red: #120b1c;
+
+ 
 $primary-color: #1445b3;
+
+$red-neon-in: #e50b0b;
+$red-neon-out: #f25757;
+
+$blue-neon-in: #0b33e5;
+$blue-neon-out: #5782f2;
+
+
+@font-face {
+  font-family: neon-line;
+  src: url("../../assets/fonts/NEON CLUB MUSIC_bold.otf");
+}
+
+@font-face {
+  font-family: neon;
+  src: url("../../assets/fonts/hello-denver-display.denver-display-regular-regular.ttf");
+}
+
+@mixin background-gradient($colorIn, $colorOut) {
+  background-image: linear-gradient(90deg, $colorIn, $colorOut);
+}
+
+@mixin neon-wrapper($colorIn, $colorOut) {
+  box-shadow:
+  0 0 0.1vw  0.4vw #fff7f7,   
+  0 0 0.4vw  0.6vw $colorOut, 
+  0 0   4vw  0.4vw $colorIn,
+  inset 0 0 1.5vw  0.4vw $colorIn,
+  inset 0 0 0.4vw  0.2vw $colorOut,
+  inset 0 0 0.5vw  0.2vw #fff7f7;
+  border-radius: 1.5rem;
+}
+
+@mixin neon-text($colorIn, $colorOut) {
+  font-family: neon;
+  font-size: 60px;
+  color: #ffd8d8;
+  padding: 0 3.5rem 0 3.5rem;
+  text-shadow: 
+  .1vw 0vw .25vw #ffd8d8, .2vw 0vw .25vw #ffd8d8, .4vw 0vw .25vw #ffd8d8, 
+  .1vw 0vw   0vw $colorOut, .2vw 0vw   0vw $colorOut, .4vw 0vw   0vw $colorOut,
+  .1vw 0vw  .1vw $colorOut, .2vw 0vw  .1vw $colorOut, .4vw 0vw  .1vw $colorOut,
+  .1vw 0vw   2vw $colorOut, .2vw 0vw   2vw $colorOut, .4vw 0vw   2vw $colorOut, 
+  .1vw 0vw   1vw $colorIn, .2vw 0vw   1vw $colorIn, .4vw 0vw   5vw $colorIn, 
+  .1vw 0vw   5vw $colorIn, .2vw 0vw  20vw $colorIn, .4vw 0vw  10vw $colorIn,
+  .1vw 0vw  10vw $colorIn, .2vw 0vw  30vw $colorIn, .4vw 0vw  10vw $colorIn;
+}

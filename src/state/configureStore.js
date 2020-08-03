@@ -5,6 +5,8 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist'
 import persistReducers from './persistReducer';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import history from '../routes/history';
 
 // Internal
 import reducers from './rootReducer';
@@ -19,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
   const logger = createLogger({
     collapsed: (getState, action) => action.type.includes('@@redux-form'),
   });
-  middleware = [...middleware, logger];
+  middleware = [...middleware, logger, routerMiddleware(history)];
 }
 
 const composeEnhancers = composeWithDevTools({});

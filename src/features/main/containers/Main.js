@@ -1,13 +1,13 @@
 // external
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// material
-import RaisedButton from 'material-ui/RaisedButton';
-import { AlertMsg, Loader } from '../../../ui';
+import { Animated } from "react-animated-css";
 
 // internal
-import * as actions from '../../../state/main/actions';
-import logo from '../../../assets/imgs/semlogo.png'
+import * as actions from 'state/main/actions';
+import { Link } from 'react-router-dom';
+import { AlertMsg, Loader } from 'ui';
+import { updateStorage, setDefaultStorage } from 'shared/utils';
 //style
 import './Main.scss';
 
@@ -16,18 +16,26 @@ const Main = () => {
   const isLoading = useSelector(state => state.main.isLoading || false);
   const message = useSelector(state => state.main.message);
 
-  function startgame() {
-    dispatch(actions.startGame());
-  }
+  useEffect(() => {
+    dispatch(actions.updateProgress('0%'));
+    setDefaultStorage();
+  }, [])
 
   return (
-    <div className="start-options">
-      { isLoading && ( <Loader /> )}
-      { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
-      <div>
-        <img src={logo} />
-        <div className="start-game-action">
-          <RaisedButton onClick={() => startgame()}>Start</RaisedButton>
+    <div className="container-main">
+      <div className="start-options">
+        { isLoading && ( <Loader /> )}
+        { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
+        <div className="bg-start">
+          <Animated animationInDelay={1500} animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+            <div className="start-game-action">
+              <Link to="/dados-iniciais" Style="text-decoration: none">
+                <div className="btn-start">
+                  <p className="btn-start-text">INICIAR GAME</p>
+                </div>
+              </Link>
+            </div>
+          </Animated>
         </div>
       </div>
     </div>
