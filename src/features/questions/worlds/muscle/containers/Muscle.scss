@@ -1,0 +1,21 @@
+@import '../../../../../shared/style/variables.scss';
+
+.muscle-container {
+  @include background-gradient($bg-dark-green, $bg-light-green);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.center-bg {
+  display: flex;
+  background-image: url('../../../../../assets/imgs/musculos_bg_central.png');
+  background-position: center;
+  background-size: cover;
+  width: 62em;
+  justify-content: center;
+
+  img {
+    width: 23em;
+  }
+}
