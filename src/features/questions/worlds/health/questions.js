@@ -10,22 +10,66 @@ export const HEALTH_QUESTIONS = {
           {
             "id": 1,
             "title": "Estou treinando",
-            "icon": ""
+            "icon": "",
+            points: [
+              {
+                chart: "BODYBUILDING_PROGRAMS",
+                values: {
+                  f2f: 0.0,
+                  slimming: 0.4,
+                  hypertrophy: 0.4,
+                  cardio: 0.2,
+                }
+              },
+            ],
           },
           {
             "id": 2,
             "title": "Treino esporadicamente",
-            "icon": ""
+            "icon": "",
+            points: [
+              {
+                chart: "BODYBUILDING_PROGRAMS",
+                values: {
+                  f2f: 0.35,
+                  slimming: 0.15,
+                  hypertrophy: 0.15,
+                  cardio: 0.35,
+                }
+              },
+            ],
           },
           {
             "id": 3,
             "title": "Não estou treinando",
-            "icon": ""
+            "icon": "",
+            points: [
+              {
+                chart: "BODYBUILDING_PROGRAMS",
+                values: {
+                  f2f: 0.5,
+                  slimming: 0.1,
+                  hypertrophy: 0.1,
+                  cardio: 0.3,
+                }
+              },
+            ],
           },
           {
             "id": 4,
             "title": "Nunca treinei",
-            "icon": ""
+            "icon": "",
+            points: [
+              {
+                chart: "BODYBUILDING_PROGRAMS",
+                values: {
+                  f2f: 0.8,
+                  slimming: 0.0,
+                  hypertrophy: 0.0,
+                  cardio: 0.2,
+                }
+              },
+            ],
           }
         ]
       },
@@ -34,7 +78,7 @@ export const HEALTH_QUESTIONS = {
 			  "category": "health",
 			  "question": "Altura",
 			  "response_type": "range",
-			  "responses": [250, 10]
+        "responses": [250, 10],
       },
       {
         "id": 3,
@@ -58,4 +102,79 @@ export const HEALTH_QUESTIONS = {
 			  "responses": [10, 0]
 		  },
     ]
+}
+
+export const POINTS_IMC = {
+  pointsMin: {
+    points: [
+      {
+        chart: "BODYBUILDING_PROGRAMS",
+        values: {
+          f2f: 0.3,
+          slimming: 0.0,
+          hypertrophy: 0.7,
+          cardio: 0.0,
+        }
+      },
+      {
+        chart: "MICRO_GYM",
+        values: {
+          race: 0.15,
+          squad: 0.4,
+          burn: 0.0,
+          torq: 0.0,
+          vidya: 0.3,
+          skill_mill: 0.15,
+        }
+      },
+    ],
+  },
+  pointsMed: {
+    points: [
+      {
+        chart: "BODYBUILDING_PROGRAMS",
+        values: {
+          f2f: 0.25,
+          slimming: 0.25,
+          hypertrophy: 0.25,
+          cardio: 0.25,
+        }
+      },
+      {
+        chart: "MICRO_GYM",
+        values: {
+          race: 0.2,
+          squad: 0.2,
+          burn: 0.2,
+          torq: 0.2,
+          vidya: 0.2,
+          skill_mill: 0.0,
+        }
+      },
+    ],
+  },
+  pointsMax: {
+    points: [
+      {
+        chart: "BODYBUILDING_PROGRAMS",
+        values: {
+          f2f: 0.1,
+          slimming: 0.7,
+          hypertrophy: 0.0,
+          cardio: 0.2,
+        }
+      },
+      {
+        chart: "MICRO_GYM",
+        values: {
+          race: 0.3,
+          squad: 0.1,
+          burn: 0.4,
+          torq: 0.1,
+          vidya: 0.0,
+          skill_mill: 0.1,
+        }
+      },
+    ],
+  },
 }

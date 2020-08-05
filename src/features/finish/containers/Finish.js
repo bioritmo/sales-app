@@ -37,7 +37,7 @@ const Finish = () => {
             <Question question={`Pronto, ${name.toUpperCase()}!\n Suas respostas serão utilizadas para selecionarmos as melhores salas, treinos e opções para você e seus objetivos!`} />
           </Animated>
         </div>
-        <NextButton label='Finalizar' delay={1900} onClick={() => dispatch(actions.nextQuestion('/'))} />
+        <NextButton label='Finalizar' delay={1900} onClick={() => dispatch(actions.nextQuestion('/consultor'))} />
       </div>
       <ProgressBar />  
     </div>

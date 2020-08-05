@@ -7,7 +7,7 @@ import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
 import Question from 'features/questions/components/question/Question';
 import NextButton from 'features/questions/components/nextButton/NextButton';
-import { saveResponseWorld } from 'shared/utils';
+import { saveResponseWorld, calculatePoints } from 'shared/utils';
 import { WorldName } from '../../components/';
 import { CardSelectItem, SelectItemLine } from '../components';
 import { HEALTH_QUESTIONS } from '../questions';
@@ -27,6 +27,7 @@ const HealthPhysical = () => {
       question: HEALTH_QUESTIONS.questions[0],
       response
     });
+    calculatePoints(HEALTH_QUESTIONS.questions[0].responses[selectedItem].points, true)
     dispatch(actions.nextQuestion('/saude-imc'));
   }
 

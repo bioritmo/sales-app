@@ -5,7 +5,7 @@ import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
-import { getStorageItem, saveResponseWorld } from 'shared/utils';
+import { getStorageItem, saveResponseWorld, calculatePoints } from 'shared/utils';
 import Question from '../../components/question/Question';
 import NextButton from '../../components/nextButton/NextButton';
 import { AVATAR_QUESTIONS } from '../questions';
@@ -30,6 +30,7 @@ const Avatar = () => {
       question: AVATAR_QUESTIONS.questions[0],
       response
     });
+    calculatePoints(AVATAR_QUESTIONS.questions[0].responses[selectedItem].points, true);
     dispatch(actions.nextQuestion('/saude-fisico'));
   }
 

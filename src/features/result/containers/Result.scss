@@ -1,0 +1,8 @@
+@import '../../../shared/style/variables.scss';
+
+.result-container {
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}

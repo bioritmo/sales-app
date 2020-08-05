@@ -13,6 +13,8 @@ import Challenge from '../features/questions/worlds/challenge/containers/Challen
 import Muscle from '../features/questions/worlds/muscle/containers/Muscle';
 import Finish from '../features/finish/containers/Finish';
 import FinishRegister from '../features/finish/containers/FinishRegister';
+import Consultant from 'features/questions/worlds/consultant/containers/Consultant';
+import Result from 'features/result/containers/Result';
 
 const Root = () => (
   <HashRouter>
@@ -28,6 +30,8 @@ const Root = () => (
       <Route exact path="/grupos-musculares" component={Muscle} />
       <Route exact path="/finaliza-cadastro" component={FinishRegister} />
       <Route exact path="/fim-de-jogo" component={Finish} />
+      <Route exact path="/consultor" component={Consultant} />
+      <Route exact path="/resultado-final" component={Result} />
     </Switch>
   </HashRouter>
 );
