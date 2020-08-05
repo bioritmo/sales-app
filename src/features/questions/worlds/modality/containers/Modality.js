@@ -5,7 +5,7 @@ import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
-import { saveResponseWorld, calculatePoints } from 'shared/utils';
+import { saveResponseWorld, calculatePoints, getStorageItem } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import Question from 'features/questions/components/question/Question';
 import { CardSelectModality } from '../components';
@@ -76,7 +76,7 @@ const Modality = () => {
               MODALITY_QUESTIONS.questions[0].responses.map((response, index) => (
                 <Animated animationInDelay={(index + 1) * 250} animationInDuration={1000} animationIn="rotateIn" isVisible={true}>
                   <CardSelectModality
-                    img={response.img}
+                    img={response.img(getStorageItem('persona')['sex'])}
                     text={response.title}
                     onSelectItem={() => onSelectItem(response.title, response.points)}
                     isSelected={selectedItems.find(i => i === response.title)}

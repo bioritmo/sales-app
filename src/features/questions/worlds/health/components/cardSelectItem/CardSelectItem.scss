@@ -3,10 +3,10 @@
   width: 27em;
   height: 17em;
   border-radius: 10px;
-  margin: 25px;
+  margin: 50px 25px;
 
   &.selected {
-    outline: solid 6px #10c27d;
+    border-bottom: solid 13px #10c27d;
   }
 }
 
@@ -16,6 +16,6 @@
   font-family: Roboto;
   margin: 20px;
   position: relative;
-  top: 7em;
+  top: -0.5em;
   text-transform: uppercase;
 }

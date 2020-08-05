@@ -5,9 +5,10 @@ import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, InputSlider, ProgressBar } from 'ui';
-import { saveResponseWorld } from 'shared/utils';
+import { saveResponseWorld, getStorageItem } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
-import walking from 'assets/imgs/person_walking.png';
+import walking_m from 'assets/imgs/person_walking_m.png';
+import walking_f from 'assets/imgs/person_walking_f.png';
 import { WorldName } from '../../components/';
 import { HEALTH_QUESTIONS } from '../questions';
 //style
@@ -70,7 +71,7 @@ const HealthEnergy = () => {
 
           <Animated style={{width: '50%'}} animationInDelay={2000} animationInDuration={2000} animationIn="fadeIn" isVisible={true}>
             <div className="response-item img-right">
-              <img src={walking} className="img-walking" />
+              <img src={getStorageItem('persona')['sex'] === 'sex-m' ? walking_m : walking_f} className="img-walking"/>
             </div>
           </Animated>
           

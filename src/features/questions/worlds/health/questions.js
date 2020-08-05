@@ -1,3 +1,13 @@
+import training_m from 'assets/imgs/training_m.png';
+import not_training_m from 'assets/imgs/not_training_m.png';
+import never_training_m from 'assets/imgs/never_training_m.png';
+import sporadically_training_m from 'assets/imgs/sporadically_training_m.png';
+
+import training_f from 'assets/imgs/training_f.png';
+import not_training_f from 'assets/imgs/not_training_f.png';
+import never_training_f from 'assets/imgs/never_training_f.png';
+import sporadically_training_f from 'assets/imgs/sporadically_training_f.png';
+
 export const HEALTH_QUESTIONS = {
   "questions": 
     [
@@ -11,6 +21,7 @@ export const HEALTH_QUESTIONS = {
             "id": 1,
             "title": "Estou treinando",
             "icon": "",
+            "img": (sex) => (sex === 'sex-m' ? training_m : training_f),
             points: [
               {
                 chart: "BODYBUILDING_PROGRAMS",
@@ -27,6 +38,7 @@ export const HEALTH_QUESTIONS = {
             "id": 2,
             "title": "Treino esporadicamente",
             "icon": "",
+            "img": (sex) => (sex === 'sex-m' ? sporadically_training_m : sporadically_training_f),
             points: [
               {
                 chart: "BODYBUILDING_PROGRAMS",
@@ -43,6 +55,7 @@ export const HEALTH_QUESTIONS = {
             "id": 3,
             "title": "Não estou treinando",
             "icon": "",
+            "img": (sex) => (sex === 'sex-m' ? not_training_m : not_training_f),
             points: [
               {
                 chart: "BODYBUILDING_PROGRAMS",
@@ -59,6 +72,7 @@ export const HEALTH_QUESTIONS = {
             "id": 4,
             "title": "Nunca treinei",
             "icon": "",
+            "img": (sex) => (sex === 'sex-m' ? never_training_m : never_training_f),
             points: [
               {
                 chart: "BODYBUILDING_PROGRAMS",

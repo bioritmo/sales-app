@@ -49,8 +49,8 @@ const Avatar = () => {
                   className={index == 2 ? "avatar-item center" : "avatar-item"}
                   onClick={() => setSelectedItem(index)}
                 >
-                  <p className={selectedItem === index && 'selected'}>{response.title}</p>
-                  <img src={response.img} />
+                  {/* <p className={selectedItem === index && 'selected'}>{response.title}</p> */}
+                  <img src={response.img(getStorageItem('persona')['sex'])} className={selectedItem === index && 'selected'}/>
                 </div>
               </Animated>
             ))

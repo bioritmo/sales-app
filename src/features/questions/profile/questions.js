@@ -1,8 +1,14 @@
-import bem_estar_m from '../../../assets/imgs/avatar_bemestar_m.png';
-import espiritual_m from '../../../assets/imgs/avatar_espiritual_m.png';
-import estetico_m from '../../../assets/imgs/avatar_estetico_m.png';
-import resistencia_m from '../../../assets/imgs/avatar_resistencia_m.png';
-import sociavel_m from '../../../assets/imgs/avatar_sociavel_m.png';
+import bem_estar_m from 'assets/imgs/avatar_bemestar_m.png';
+import espiritual_m from 'assets/imgs/avatar_espiritual_m.png';
+import estetico_m from 'assets/imgs/avatar_estetico_m.png';
+import resistencia_m from 'assets/imgs/avatar_resistencia_m.png';
+import sociavel_m from 'assets/imgs/avatar_sociavel_m.png';
+
+import bem_estar_f from 'assets/imgs/avatar_bemestar_f.png';
+import espiritual_f from 'assets/imgs/avatar_espiritual_f.png';
+import estetico_f from 'assets/imgs/avatar_estetico_f.png';
+import resistencia_f from 'assets/imgs/avatar_resistencia_f.png';
+import sociavel_f from 'assets/imgs/avatar_sociavel_f.png';
 
 export const AVATAR_QUESTIONS = {
   "questions": 
@@ -16,7 +22,7 @@ export const AVATAR_QUESTIONS = {
           {
             id: 1,
             "title": "bem-estar",
-            "img": bem_estar_m,
+            "img": (sex) => (sex === 'sex-m' ? bem_estar_m : bem_estar_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -43,7 +49,7 @@ export const AVATAR_QUESTIONS = {
           {
             id: 2,
             "title": "resistencia e energia",
-            "img": resistencia_m,
+            "img": (sex) => (sex === 'sex-m' ? resistencia_m : resistencia_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -70,7 +76,7 @@ export const AVATAR_QUESTIONS = {
           {
             id: 3,
             "title": "sociavel",
-            "img": sociavel_m,
+            "img": (sex) => (sex === 'sex-m' ? sociavel_m : sociavel_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -97,7 +103,7 @@ export const AVATAR_QUESTIONS = {
           {
             id: 4,
             "title": "estético",
-            "img": estetico_m,
+            "img": (sex) => (sex === 'sex-m' ? estetico_m : estetico_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -124,7 +130,7 @@ export const AVATAR_QUESTIONS = {
           {
             id: 5,
             "title": "espiritual",
-            "img": espiritual_m,
+            "img": (sex) => (sex === 'sex-m' ? espiritual_m : espiritual_f),
             points: [
               {
                 chart: "MICRO_GYM",

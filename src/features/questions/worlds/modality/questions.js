@@ -1,11 +1,20 @@
-import musculacao from '../../../../assets/imgs/musculacao.png';
-import correr from '../../../../assets/imgs/correr.png';
-import pedalar from '../../../../assets/imgs/pedalar.png';
-import nadar from '../../../../assets/imgs/nadar.png';
-import funcional from '../../../../assets/imgs/funcional.png';
-import yoga from '../../../../assets/imgs/yoga.png';
-import dancar from '../../../../assets/imgs/dancar.png';
-import alongar from '../../../../assets/imgs/alongar.png';
+import musculacao_m from 'assets/imgs/musculacao_m.png';
+import correr_m from 'assets/imgs/correr_m.png';
+import pedalar_m from 'assets/imgs/pedalar_m.png';
+import nadar_m from 'assets/imgs/nadar_m.png';
+import funcional_m from 'assets/imgs/funcional_m.png';
+import yoga_m from 'assets/imgs/yoga_m.png';
+import dancar_m from 'assets/imgs/dancar_m.png';
+import alongar_m from 'assets/imgs/alongar_m.png';
+
+import musculacao_f from 'assets/imgs/musculacao_f.png';
+import correr_f from 'assets/imgs/correr_f.png';
+import pedalar_f from 'assets/imgs/pedalar_f.png';
+import nadar_f from 'assets/imgs/nadar_f.png';
+import funcional_f from 'assets/imgs/funcional_f.png';
+import yoga_f from 'assets/imgs/yoga_f.png';
+import dancar_f from 'assets/imgs/dancar_f.png';
+import alongar_f from 'assets/imgs/alongar_f.png';
 
 export const MODALITY_QUESTIONS = {
   "questions": 
@@ -20,7 +29,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 1,
             "title": "musculação",
-            "img": musculacao,
+            "img": (sex) => (sex === 'sex-m' ? musculacao_m : musculacao_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -38,7 +47,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 2,
             "title": "correr",
-            "img": correr,
+            "img": (sex) => (sex === 'sex-m' ? correr_m : correr_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -56,7 +65,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 3,
             "title": "pedalar",
-            "img": pedalar,
+            "img": (sex) => (sex === 'sex-m' ? pedalar_m : pedalar_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -74,7 +83,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 4,
             "title": "nadar",
-            "img": nadar,
+            "img": (sex) => (sex === 'sex-m' ? nadar_m : nadar_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -92,7 +101,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 5,
             "title": "funcional",
-            "img": funcional,
+            "img": (sex) => (sex === 'sex-m' ? funcional_m : funcional_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -110,7 +119,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 6,
             "title": "yoga",
-            "img": yoga,
+            "img": (sex) => (sex === 'sex-m' ? yoga_m : yoga_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -128,7 +137,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 7,
             "title": "dançar",
-            "img": dancar,
+            "img": (sex) => (sex === 'sex-m' ? dancar_m : dancar_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -146,7 +155,7 @@ export const MODALITY_QUESTIONS = {
           {
             id: 8,
             "title": "alongar",
-            "img": alongar,
+            "img": (sex) => (sex === 'sex-m' ? alongar_m : alongar_f),
             points: [
               {
                 chart: "MICRO_GYM",
