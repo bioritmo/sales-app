@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
@@ -55,6 +56,7 @@ const Muscle = () => {
   const [groupSelected, setGroupSelected] = useState([]);
   const [selectedQtdItems, setSelectedQtdItems] = useState(0);
   const [selectSex, setSelectSex] = useState(getStorageItem('persona')['sex']);
+  const [nextPage, setNextPage] = useState(false);
 
   const [tummy, setTummy] = useState(selectSex === 'sex-m' ? tummyMan : tummyWoman);
   const [tummySelected, setTummySelected] = useState(selectSex === 'sex-m' ? tummyManSelected : tummyWomanSelected);
@@ -99,12 +101,13 @@ const Muscle = () => {
       question: MUSCLE_QUESTIONS.questions[0],
       response: groupSelected
     });
-
-    dispatch(actions.nextQuestion('/finaliza-cadastro'));
+    dispatch(actions.nextQuestion());
+    setNextPage(true);
   };
 
   return (
     <div className="muscle-container">
+      { nextPage && <Redirect to="/finaliza-cadastro" />}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO MUSCULOS" />
@@ -131,7 +134,13 @@ const Muscle = () => {
             </div>
           </div>
         </div>
-        <NextButton onClick={() => saveResponse()} delay={1500}/>
+        {
+          selectedQtdItems == 3 && (
+            <div className="container-next-button-muscle">
+              <NextButton onClick={() => saveResponse()} delay={1500}/>
+            </div>
+          )
+        }
       </div>
       <ProgressBar />
     </div>

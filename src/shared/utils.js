@@ -42,6 +42,7 @@ export const setDefaultStorage = () => {
     modality: [],
     challenge: [],
     muscle: [],
+    consultant: [],
     points: [
       {
         chart: "BODYBUILDING_PROGRAMS",
@@ -102,4 +103,34 @@ export const saveResponseWorld = (world, response) => {
 
   storage[world].push(response);
   updateStorage(storage);
+}
+
+
+export const saveResponseConsultant = (data) => {
+  const storage = getStorage();
+
+  storage['consultant'] = data;
+  updateStorage(storage);
+}
+
+export function isCPF(strCPF) {
+  let Sum;
+  var Rest;
+  Sum = 0;
+  if (strCPF == "00000000000") return false;
+  if (strCPF.length < 11) return false;
+
+  for (let i=1; i<=9; i++) Sum = Sum + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+  Rest = (Sum * 10) % 11;
+
+  if ((Rest == 10) || (Rest == 11))  Rest = 0;
+  if (Rest != parseInt(strCPF.substring(9, 10)) ) return false;
+
+  Sum = 0;
+  for (let i = 1; i <= 10; i++) Sum = Sum + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+  Rest = (Sum * 10) % 11;
+
+  if ((Rest == 10) || (Rest == 11))  Rest = 0;
+  if (Rest != parseInt(strCPF.substring(10, 11) ) ) return false;
+  return true;
 }

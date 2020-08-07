@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
@@ -20,6 +21,7 @@ const HealthPhysical = () => {
   const message = useSelector(state => state.main.message);
 
   const [selectedItem, setSelectedItem] = useState(-1);
+  const [nextPage, setNextPage] = useState(false);
 
   function saveResponse() {
     const response = HEALTH_QUESTIONS.questions[0].responses[selectedItem];
@@ -27,12 +29,14 @@ const HealthPhysical = () => {
       question: HEALTH_QUESTIONS.questions[0],
       response
     });
-    calculatePoints(HEALTH_QUESTIONS.questions[0].responses[selectedItem].points, true)
-    dispatch(actions.nextQuestion('/saude-imc'));
+    calculatePoints(HEALTH_QUESTIONS.questions[0].responses[selectedItem].points, true);
+    dispatch(actions.nextQuestion());
+    setNextPage(true);
   }
 
   return (
     <div className="health-container">
+      { nextPage && <Redirect to="/saude-nivel-de-energia" />}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO SAÚDE" />

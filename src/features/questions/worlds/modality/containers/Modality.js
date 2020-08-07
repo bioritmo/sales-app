@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
@@ -24,18 +25,18 @@ const Modality = () => {
   const [currentItemText, setCurrentItemText] = useState('');
   const [currentItemPoints, setCurrentItemPoints] = useState([]);
   const [operation, setOperation] = useState('');
+  const [nextPage, setNextPage] = useState(false);
 
   function saveResponse() {
     saveResponseWorld('modality', {
       question: MODALITY_QUESTIONS.questions[0],
       response: selectedItems
     });
-
-    dispatch(actions.nextQuestion('/desafios'));
+    dispatch(actions.nextQuestion());
+    setNextPage(true);
   };
 
   function onSelectItem(title, points) {
-    console.log(points)
     const item = selectedItems.find(i => i === title);
     if (!item && selectedQtdItems < 3) {
       setSelectedItems([...selectedItems, title]);
@@ -64,6 +65,7 @@ const Modality = () => {
 
   return (
     <div className="modality-container">
+      { nextPage && <Redirect to="/desafios" />}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO MODALIDADES" />

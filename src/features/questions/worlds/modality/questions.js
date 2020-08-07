@@ -13,7 +13,7 @@ import pedalar_f from 'assets/imgs/pedalar_f.png';
 import nadar_f from 'assets/imgs/nadar_f.png';
 import funcional_f from 'assets/imgs/funcional_f.png';
 import yoga_f from 'assets/imgs/yoga_f.png';
-import dancar_f from 'assets/imgs/dancar_f.png';
+import dancar_f from 'assets/imgs/danca_f.png';
 import alongar_f from 'assets/imgs/alongar_f.png';
 
 export const MODALITY_QUESTIONS = {

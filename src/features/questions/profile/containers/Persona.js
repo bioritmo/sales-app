@@ -1,5 +1,5 @@
 // external
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // internal
@@ -12,6 +12,7 @@ import FSymbol from '../../assets/imgs/f_symbol.png';
 import MSymbol from '../../assets/imgs/m_symbol.png';
 //style
 import './Persona.scss';
+import { Redirect } from 'react-router';
 
 const Persona = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,20 @@ const Persona = () => {
   const [name, setName] = useState('');
   const [isSelectAvatar, setIsSelectAvatar] = useState(false);
   const [sex, setSex] = useState('');
+  const [nextPage, setNextPage] = useState(false);
 
   function onSaveName() {
     if(name !== '') {
       setIsSelectAvatar(true);
     } else {
       alert('Por favor, preencha seu nome');
+    }
+  }
+
+  function changeName(value){
+    setName(value);
+    if(name !== '' && sex !== '' ) {
+      setIsSelectAvatar(true);
     }
   }
 
@@ -45,11 +54,13 @@ const Persona = () => {
       sex,
     };
     savePersona(persona);
-    dispatch(actions.nextQuestion('/selecione-avatar'));
+    dispatch(actions.nextQuestion());
+    setNextPage(true)
   }
 
   return (
     <div className="persona-container">
+      {nextPage ? <Redirect to="/selecione-avatar" /> : null}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
@@ -61,7 +72,7 @@ const Persona = () => {
             <input 
               className="input-name"
               type="text"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => changeName(e.target.value)}
               value={name}
             />
           </Animated>

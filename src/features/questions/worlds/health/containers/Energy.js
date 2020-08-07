@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, InputSlider, ProgressBar } from 'ui';
@@ -21,6 +22,7 @@ const HealthEnergy = () => {
 
   const [energy, setEnergy] = useState(0);
   const [physic, setPhysic] = useState(0);
+  const [nextPage, setNextPage] = useState(false);
 
   function saveResponse() {
     saveResponseWorld('health', {
@@ -32,12 +34,13 @@ const HealthEnergy = () => {
       question: HEALTH_QUESTIONS.questions[4],
       response: physic
     });
-
-    dispatch(actions.nextQuestion('/modalidades'));
+    dispatch(actions.nextQuestion());
+    setNextPage(true);
   };
 
   return (
     <div className="health-container">
+      { nextPage && <Redirect to="/saude-imc" />}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO SAÚDE" />

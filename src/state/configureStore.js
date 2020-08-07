@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const composeEnhancers = composeWithDevTools({});
-const store = createStore(persistReducers(reducers), composeEnhancers(applyMiddleware(...middleware)));
+const store = createStore(connectRouter(history)(persistReducers(reducers)), composeEnhancers(applyMiddleware(...middleware)));
 const persistor = persistStore(store)
 
 sagaMiddleware.run(rootSaga);

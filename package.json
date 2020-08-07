@@ -1,6 +1,7 @@
 {
   "name": "bio-sales",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@dr-kobros/react-webfont-loader": "^8.0.0",

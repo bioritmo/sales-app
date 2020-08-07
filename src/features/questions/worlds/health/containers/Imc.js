@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, InputSlider, ProgressBar } from 'ui';
@@ -22,6 +23,7 @@ const HealthImc = () => {
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
   const [imc, setImc] = useState(0);
+  const [nextPage, setNextPage] = useState(false);
 
   useEffect(() => {
     console.log(imc)
@@ -43,12 +45,13 @@ const HealthImc = () => {
 
     const weightCalc = weight * 100;
     setImc(weightCalc / (height * height) * 100);
-
-    dispatch(actions.nextQuestion('/saude-nivel-de-energia'));
+    dispatch(actions.nextQuestion());
+    setNextPage(true);
   };
 
   return (
     <div className="health-container">
+      { nextPage && <Redirect to="/modalidades" />}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO SAÚDE" />

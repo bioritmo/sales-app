@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
@@ -23,14 +24,15 @@ const Challenge = () => {
   const [currentItemText, setCurrentItemText] = useState('');
   const [currentItemPoints, setCurrentItemPoints] = useState('');
   const [operation, setOperation] = useState('');
+  const [nextPage, setNextPage] = useState(false);
 
   function saveResponse() {
     saveResponseWorld('challenge', {
       question: CHALLENGE_QUESTIONS.questions[0],
       response: selectedItems
     });
-
-    dispatch(actions.nextQuestion('/grupos-musculares'));
+    dispatch(actions.nextQuestion());
+    setNextPage(true);
   };
 
   function findIndexItem(item){
@@ -70,6 +72,7 @@ const Challenge = () => {
 
   return (
     <div className="challenge-container">
+      {nextPage ? <Redirect to="/grupos-musculares" /> : null}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO DESAFIOS" />

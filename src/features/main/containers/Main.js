@@ -6,7 +6,7 @@ import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
 import { Link } from 'react-router-dom';
-import { AlertMsg, Loader } from 'ui';
+import { AlertMsg, Loader, Logo } from 'ui';
 import { updateStorage, setDefaultStorage } from 'shared/utils';
 //style
 import './Main.scss';
@@ -24,6 +24,7 @@ const Main = () => {
   return (
     <div className="container-main">
       <div className="start-options">
+        <Logo />
         { isLoading && ( <Loader /> )}
         { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
         <div className="bg-start">

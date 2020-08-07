@@ -16,7 +16,7 @@ export const AVATAR_QUESTIONS = {
       {
         "id": 1,
         "category": "profile",
-			  "question": "para você aproveitar o máximo da BioRitmo, nos conte mais sobre seus hábitos.",
+			  "question": "para você aproveitar o máximo da Bio Ritmo, nos conte mais sobre seus hábitos.",
         "response_type": "check",
 			  "responses": [
           {

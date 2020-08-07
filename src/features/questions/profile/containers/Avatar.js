@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
@@ -19,6 +20,7 @@ const Avatar = () => {
   
   const [selectedItem, setSelectedItem] = useState(-1);
   const [name, setName] = useState('');
+  const [nextPage, setNextPage] = useState(false);
 
   useEffect(() => {
     setName(getStorageItem('persona')['name']);
@@ -31,11 +33,13 @@ const Avatar = () => {
       response
     });
     calculatePoints(AVATAR_QUESTIONS.questions[0].responses[selectedItem].points, true);
-    dispatch(actions.nextQuestion('/saude-fisico'));
+    dispatch(actions.nextQuestion());
+    setNextPage(true);
   }
 
   return (
     <div className="avatar-container">
+      {nextPage ? <Redirect to="/saude-fisico" /> : null}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />

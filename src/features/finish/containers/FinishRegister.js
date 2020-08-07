@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
-import * as actions from '../../../state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from '../../../ui';
+import * as actions from 'state/main/actions';
+import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
 import Question from '../../questions/components/question/Question';
 import NextButton from '../../questions/components/nextButton/NextButton';
-// import { savePersona } from '../../../../shared/utils';
+import { savePersona, isCPF } from 'shared/utils';
 //style
 import './FinishRegister.scss';
-import { savePersona } from '../../../shared/utils';
 
 const FinishRegister = () => {
   const dispatch = useDispatch();
@@ -20,19 +20,33 @@ const FinishRegister = () => {
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [document, setDocument] = useState('');
-
+  const [nextPage, setNextPage] = useState(false);
+  
   function onSavePersona() {
-    const persona = {
-      email,
-      mobile,
-      document,
-    };
-    savePersona(persona);
-    dispatch(actions.nextQuestion('/fim-de-jogo'));
+    if (email !== '' && mobile !== '' && document !== ''){
+      const persona = {
+        email,
+        mobile,
+        document,
+      };
+
+      if (isCPF(document)) {
+        savePersona(persona);
+        dispatch(actions.nextQuestion());
+        setNextPage(true);
+      } else {
+        alert('CPF inválido')
+      }
+      
+    } else {
+      alert('Por favor, preencha todos os campos.')
+    }
+    
   }
 
   return (
     <div className="persona-container">
+      {nextPage ? <Redirect to="/fim-de-jogo" /> : null}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
@@ -62,9 +76,11 @@ const FinishRegister = () => {
               <div className="input-container">
                 <input 
                   className="input-name"
-                  type="text"
+                  type="tel"
                   onChange={(e) => setMobile(e.target.value)}
                   value={mobile}
+                  maxLength={11}
+                  placeholder="(DDD)XXXXX-XXXX"
                 />
               </div>
             </div>
@@ -76,9 +92,10 @@ const FinishRegister = () => {
               <div className="input-container">
                 <input 
                   className="input-name"
-                  type="text"
+                  type="tel"
                   onChange={(e) => setDocument(e.target.value)}
                   value={document}
+                  maxLength={11}
                 />
               </div>
             </div>

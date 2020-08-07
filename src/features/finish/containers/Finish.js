@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
@@ -18,6 +19,7 @@ const Finish = () => {
   const message = useSelector(state => state.main.message);
 
   const [name, setName] = useState('');
+  const [nextPage, setNextPage] = useState(false);
 
   useEffect(() => {
     setName(getStorageItem('persona')['name']);
@@ -25,6 +27,7 @@ const Finish = () => {
 
   return (
     <div className="finish-container">
+      {nextPage ? <Redirect to="/consultor" /> : null}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
@@ -37,7 +40,7 @@ const Finish = () => {
             <Question question={`Pronto, ${name.toUpperCase()}!\n Suas respostas serão utilizadas para selecionarmos as melhores salas, treinos e opções para você e seus objetivos!`} />
           </Animated>
         </div>
-        <NextButton label='Finalizar' delay={1900} onClick={() => dispatch(actions.nextQuestion('/consultor'))} />
+        <NextButton label='Finalizar' delay={1900} onClick={() => setNextPage(true)} />
       </div>
       <ProgressBar />  
     </div>

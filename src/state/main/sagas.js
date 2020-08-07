@@ -14,7 +14,7 @@ export function* workerNextQuestion(action) {
   const { page } = action.payload;
 
   yield put(actions.updateProgress())
-  yield put(push(page));
+  // yield put(push(page));
 }
 
 export function* workerUpdateProgress(action) {
