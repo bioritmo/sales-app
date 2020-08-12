@@ -1,0 +1,46 @@
+@import '../../../shared/style/variables.scss';
+
+.result-container {
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+
+.charts-container {
+  width: 750px;
+  margin: 10em auto;
+}
+
+.response-result-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px 3em 0px;
+  font-family: Roboto;
+  color: #CCC
+}
+
+.title-question-result {
+  margin: 30px 0px 5px 0px;
+  font-size: 25px;
+}
+
+.response-question-result {
+  font-size: 30px;
+  color: white;
+  margin: 10px 0px;
+
+  &.number {
+    font-size: 45px;
+  }
+}
+
+.responses-user-container {
+  margin: 0px;
+  width: 70%;
+}
+
+.imc-container {
+  text-align: center;
+  padding: 20px;
+}

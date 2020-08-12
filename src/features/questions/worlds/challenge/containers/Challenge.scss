@@ -1,0 +1,127 @@
+@import '../../../../../shared/style/variables.scss';
+
+.challenge-container {
+  @include background-gradient($bg-dark-red, $bg-light-red);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.response-container-challenge {
+  width: 100%;
+  margin: 0em auto;
+  display: flex;
+}
+
+.text-card-challenge {
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  background-image: linear-gradient(180deg, #edb13b, #e5884b);
+  width: 260px;
+  text-align: center;
+  font-family: Roboto;
+  border-radius: 5px;
+  margin: 20px 15px;
+  text-transform: uppercase;
+
+  &.selected {
+    background-image: linear-gradient(180deg, #a87000, #532100);
+  }
+}
+
+.responses-question-challenge {
+  width: 100%;
+  max-height: 60em;
+  max-width: 27em;
+  padding: 30px;;
+}
+
+.results-response-challenge {
+  width: 50%;
+  display: flex;
+  margin-top: 10em;
+  justify-content: center;
+  padding: 20px;
+  margin-left: -2em;
+}
+
+.podium-container-first {
+  width: 110px;
+  height: 150px;
+  border: solid 3px gold;
+  background-image: linear-gradient(180deg, #f8d14e, #ff6e00);
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+.podium-container-second {
+  width: 110px;
+  height: 125px;
+  border: solid 3px silver;
+  background-image: linear-gradient(180deg, #dad9da, #4d4d4d);
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.challenge-question-text-container {
+  margin-top: 8em;
+} 
+
+.podium-container-third {
+  width: 110px;
+  height: 100px;
+  border: solid 3px rgb(163, 80, 2);
+  background-image: linear-gradient(180deg, #6d2e17, #ee793b);
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  margin-top: 6px;
+}
+
+.text-podium {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Roboto;
+  font-weight: bold;
+  color: black;
+  overflow: hidden;
+  max-height: 55px;
+  text-transform: uppercase;
+}
+
+.index-podium {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 85px;
+  font-weight: bold;
+  margin: 0px;
+
+  &.second {
+    margin-top: 20px;
+  }
+
+  &.third {
+    margin-top: 50px;
+  }
+}
+
+.btn-next-container {
+  margin-top: -3em;
+}

@@ -1,0 +1,63 @@
+@import "../../../../shared/style/variables.scss";
+
+.persona-container {
+  @include background-gradient($bg-dark-yellow, $bg-light-yellow);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.input-name {
+  border: solid 2px #bf9604;
+  outline: none;
+  font-size: 35px;
+  padding: 20px;
+  background-color: transparent;
+  color: #a9a6a6;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sex-container {
+  margin: 30px auto;
+  width: 90%;
+}
+
+.select-sex-container {
+  display: flex;
+  margin-top: 80px;
+  justify-content: center;
+}
+
+.sex-item {
+  padding: 2em;
+  cursor: pointer;
+
+  > .active {
+      @include neon-wrapper($red-neon-in, $red-neon-out);
+      border-radius: 0;
+    }
+}
+
+.sex-item-active {
+  border: solid 5px #bf9604;
+  padding: 2em;
+  border-radius: 10px;
+  cursor: pointer;  
+}
+
+.name-avatar-container {
+  width: 100%;
+  margin-top: 7em;
+}
+
+.name-avatar {
+  width: 90%;
+  margin: 12em auto;
+}
+
+.sex-img {
+  width: 18em;
+}

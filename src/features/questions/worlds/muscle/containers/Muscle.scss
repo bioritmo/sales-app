@@ -1,0 +1,140 @@
+@import '../../../../../shared/style/variables.scss';
+
+.muscle-container {
+  @include background-gradient($bg-dark-green, $bg-light-green);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.center-bg {
+  display: flex;
+  background-image: url('../../../../../assets/imgs/musculos_bg_central.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+
+  img {
+    width: 78%;
+  }
+}
+
+.response-container-muscle {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 9em;
+  margin-top: 3em;
+}
+
+
+.man {
+  &.breast {
+    position: absolute;
+    left: 39%;
+    top: 15%;
+    z-index: 9;
+    width: 22%;
+  }
+
+  &.front-arms {
+    position: absolute;
+    left: 19%;
+    top: 20%;
+    width: 62%;
+  }
+
+  &.tummy {
+    position: absolute;
+    left: 39.5%;
+    top: 29%;
+    width: 21%;
+  }
+
+  &.back-arms {
+    position: absolute;
+    top: 20%;
+    width: 62%;
+    left: 19%;
+  }
+
+  &.back {
+    position: absolute;
+    left: 39%;
+    top: 14%;
+    width: 22%;
+  }
+
+  &.front-legs {
+    position: absolute;
+    left: 38%;
+    top: 45%;
+    width: 24%;
+  }
+
+  &.back-legs {
+    position: absolute;
+    left: 37.5%;
+    top: 41%;
+    width: 25%;
+  }
+}
+
+.container-next-button-muscle {
+  margin-top: -70px;
+}
+
+.woman {
+  &.breast {
+    position: absolute;
+    left: 39%;
+    top: 11%;
+    z-index: 9;
+    width: 22%;
+  }
+
+  &.front-arms {
+    position: absolute;
+    left: 16%;
+    top: 16%;
+    width: 68%;
+    height: 35%;
+  }
+
+  &.tummy {
+    position: absolute;
+    left: 39.5%;
+    top: 25%;
+    width: 21%;
+  }
+
+  &.back-arms {
+    position: absolute;
+    top: 16%;
+    width: 66%;
+    left: 17%;
+    height: 34%;
+  }
+
+  &.back {
+    position: absolute;
+    left: 39%;
+    top: 10%;
+    width: 22%;
+  }
+
+  &.front-legs {
+    position: absolute;
+    left: 36%;
+    top: 41%;
+    width: 28%;
+  }
+
+  &.back-legs {
+    position: absolute;
+    left: 35.5%;
+    top: 37%;
+    width: 29%;
+  }
+}

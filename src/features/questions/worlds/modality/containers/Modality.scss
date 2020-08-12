@@ -1,0 +1,17 @@
+@import '../../../../../shared/style/variables.scss';
+
+.modality-container {
+  @include background-gradient($bg-dark-purple, $bg-light-purple);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+.select-question-modality {
+  display: grid;
+  grid-template-columns: 0fr 0fr 0fr 0fr;
+  margin: 0 auto;
+  width: 90%;
+  margin-top: 5em;
+}

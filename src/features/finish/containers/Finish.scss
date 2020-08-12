@@ -1,0 +1,14 @@
+@import '../../../shared/style/variables.scss';
+
+.finish-container {
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-size: 20px !important;
+}
+
+.trophy {
+  width: 70%;
+  margin-bottom: 3em;
+}

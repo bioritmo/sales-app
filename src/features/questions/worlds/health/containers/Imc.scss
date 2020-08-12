@@ -1,0 +1,26 @@
+.response-container {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 9em;
+  margin-top: -5em;
+}
+
+.response-item {
+  width: 100%;
+  text-align: center;
+  margin-left: 0;
+
+  &.img-left {
+    margin-left: -2em;
+    margin-top: 3em;
+    width: 23em;
+  }
+}
+
+.img-walking {
+  width: 23em;
+}
+
+.action-imc {
+  margin-top: 12em;
+}
