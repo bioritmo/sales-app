@@ -15,6 +15,7 @@ import { CONSULT_QUESTIONS } from '../questions';
 import './Consultant.scss';
 import CardResponse from '../components/cardResponse/CardResponse';
 import ResponseCardWrapper from '../components/responseCardWrapper/ResponseCardWrapper';
+import Question from 'features/questions/components/question/Question';
 
 const Consultant = ({ match }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,8 @@ const Consultant = ({ match }) => {
   
   const [isConsultant, setIsConsultant] = useState(false);
   const [responsesList, setResponsesList] = useState([]);
-  const [nextPage, setNextPage] = useState(false);
+  const [name, setName] = useState("");
+  const [local, setLocal] = useState("");
   const [urlParam, setUrlParam] = useState(match.params.questions);
 
   useEffect(() => {
@@ -33,9 +35,12 @@ const Consultant = ({ match }) => {
   }, [])
 
   function saveResponse() {
-    saveResponseConsultant(responsesList);
+    saveResponseConsultant({
+      responsesList,
+      consultName: name,
+      local,
+    });
     dispatch(actions.nextQuestion("/resultado-final/resultados"));
-    setNextPage(true);
   };
 
   function redirectConsultant() {
@@ -71,6 +76,25 @@ const Consultant = ({ match }) => {
         ) : (
           <>
             <div className="consult-questions">
+
+              <div Style="display: flex;width: 90%;margin: 0 auto;">
+
+                <div className="input-container-name-consultant">
+                  <input 
+                    className="input-text"
+                    type="text"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    placeholder="Nome"
+                  />
+                </div>
+
+                <select className="select" placeholder="Unidades" onChange={(e) => setLocal(e.target.value)}>
+                  <option value="0">Unidade</option>
+                  <option value="PTA">Paulista</option>
+                </select>
+              </div>
+              
               {
                 CONSULT_QUESTIONS.questions.map(currentQuestions => (
                   <ResponseCardWrapper question={currentQuestions.question}>

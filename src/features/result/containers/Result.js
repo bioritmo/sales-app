@@ -57,13 +57,29 @@ const Result = ({ match }) => {
       const totalCurrent = chart['values'][current] * 10;
       const percent = (totalCurrent * 100) / totalBodyBuildind;
       return {
-        barPercentage: 0.5,
         label: current,
         backgroundColor: generateRandomColor(),
         data: [percent.toFixed(2)],
       }
     });
     return values;
+  }
+
+  function makeObjectToChartDoughnut(chart) {
+    const totalBodyBuildind = calculateTotalPercent(chart);
+    const keys = Object.keys(chart['values']);
+    const values = keys.map((current, index) => {
+      const totalCurrent = chart['values'][current] * 10;
+      const percent = (totalCurrent * 100) / totalBodyBuildind;
+      return percent.toFixed(2)
+      }
+    );
+    const result = {
+      data: values,
+      backgroundColor: [generateRandomColor(), generateRandomColor(), generateRandomColor(), generateRandomColor()],
+      labels: keys
+    }
+    return result;
   }
 
   useEffect(() => {
@@ -85,7 +101,7 @@ const Result = ({ match }) => {
     const FITNESS = points[2];
     setDatasets(makeObjectToChart(BODYBUILDING_PROGRAMS))
     setDatasetsMicroGym(makeObjectToChart(MICRO_GYM))
-    setDatasetsFitness(makeObjectToChart(FITNESS))
+    setDatasetsFitness(makeObjectToChartDoughnut(FITNESS))
   }, []);
 
   useEffect(() => {
@@ -97,11 +113,11 @@ const Result = ({ match }) => {
         },
         options: {
           legend: {
-            position: 'bottom',
+            position: 'right',
             display: true,
             labels: {
                 fontColor: 'white',
-                fontSize: 25,
+                fontSize: 23,
                 padding: 20,
             }
           },
@@ -132,11 +148,11 @@ const Result = ({ match }) => {
         },
         options: {
           legend: {
-            position: 'bottom',
+            position: 'right',
             display: true,
             labels: {
                 fontColor: 'white',
-                fontSize: 25,
+                fontSize: 23,
                 padding: 20,
             }
           },
@@ -160,35 +176,24 @@ const Result = ({ match }) => {
     }
     if (fitnessRef && fitnessRef.current){
       const myPieChart1 = new Chart(fitnessRef.current, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
-          datasets: datasetsFitness,
+          labels: datasetsFitness.labels,
+          datasets: [{
+            data: datasetsFitness.data,
+            backgroundColor: datasetsFitness.backgroundColor,
+        }],
         },
         options: {
           legend: {
-            position: 'bottom',
+            position: 'right',
             display: true,
             labels: {
                 fontColor: 'white',
-                fontSize: 25,
+                fontSize: 23,
                 padding: 20,
             }
           },
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                fontColor: 'white',
-                fontSize: 14
-              },
-              gridLines:{
-                color: 'white',
-                lineWidth: 0.3,
-                zeroLineColor :'white',
-                zeroLineWidth : 1
-              },
-            }]
-        }
       }
       });
     }
@@ -238,10 +243,20 @@ const Result = ({ match }) => {
             </div>
         </div>
 
-        <canvas ref={microGymRef} width="900px" height="500px"></canvas><br /><br /><br />
-        <canvas ref={canvasRef} width="900px" height="500px"></canvas><br /><br /><br /><br />
-        <canvas ref={fitnessRef} width="900px" height="500px"></canvas><br />
-        
+        <div className="chart-content">
+          <p className="title-charts">MICRO ACADEMIAS</p>
+          <canvas ref={microGymRef} width="900px" height="500px"></canvas>
+        </div>
+
+        <div className="chart-content">
+          <p className="title-charts">Programas de hipertrofia</p>
+          <canvas ref={canvasRef} width="900px" height="500px"></canvas>
+        </div>
+
+        <div className="chart-content">
+          <p className="title-charts">Programas de ginástica</p>
+          <canvas ref={fitnessRef} width="900px" height="500px"></canvas>
+        </div>        
       </div>
       <div Style="margin-bottom: 50px;">
         <NextButton onClick={() => printScreen()} label="Finalizar" />
