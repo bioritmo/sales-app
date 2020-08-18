@@ -64,10 +64,10 @@ const Persona = () => {
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
       <div className="name-avatar">
-        <Question question="ENTRE COM O SEU NOME" pipeColor="#bf9604"/>
+        <Question question="ENTRE COM O SEU NOME COMPLETO" pipeColor="#bf9604"/>
         
         <div className="sex-container">
-          <Animated style={{display: 'flex'}} animationInDelay="500" animationInDuration={1000} animationIn="fadeIn" isVisible={true}>
+          <Animated style={{ display: 'flex' }} animationInDelay="500" animationInDuration={1000} animationIn="fadeIn" isVisible={true}>
             <input 
               className="input-name"
               type="text"

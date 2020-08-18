@@ -19,12 +19,12 @@ export const calculatePoints = (itemPoints, isSum = false, multiplier = 1) => {
     const itemChartStorage = storagePoints.find(chart => chart.chart === item.chart);
 
     keysPoints.map(keyPoint => {
-      const currentValueStorage = parseFloat(itemChartStorage.values[keyPoint]);
+      const currentValueStorage = parseFloat(itemChartStorage.values[keyPoint]['value']);
       const currentValue = parseFloat(item.values[keyPoint]);
       if (isSum) {
-        itemChartStorage.values[keyPoint] = (currentValue * multiplier) + currentValueStorage;
+        itemChartStorage.values[keyPoint]['value'] = (currentValue * multiplier) + currentValueStorage;
       } else {
-        itemChartStorage.values[keyPoint] = currentValueStorage - (currentValue * multiplier);
+        itemChartStorage.values[keyPoint]['value'] = currentValueStorage - (currentValue * multiplier);
       }
     })
   })
@@ -47,35 +47,81 @@ export const setDefaultStorage = () => {
       {
         chart: "BODYBUILDING_PROGRAMS",
         values: {
-          f2f: 0.0,
-          slimming: 0.0,
-          hypertrophy: 0.0,
-          cardio: 0.0,
+          f2f: {
+            value: 0.0,
+            legend: 'Face to face'
+          },
+          slimming: {
+            value: 0.0,
+            legend: 'Emagrecimento'
+          },
+          hypertrophy: {
+            value: 0.0,
+            legend: 'Hipertrofia'
+          },
+          cardio: {
+            value: 0.0,
+            legend: 'Cardio'
+          },
         }
       },
       {
         chart: "MICRO_GYM",
         values: {
-          race: 0.0,
-          squad: 0.0,
-          burn: 0.0,
-          torq: 0.0,
-          vidya: 0.0,
-          skill_mill: 0.0,
+          race: {
+            value: 0.0,
+            legend: 'Race'
+          },
+          squad: {
+            value: 0.0,
+            legend: 'Squad'
+          },
+          burn: {
+            value: 0.0,
+            legend: 'Burn'
+          },
+          torq: {
+            value: 0.0,
+            legend: 'Torq'
+          },
+          vidya: {
+            value: 0.0,
+            legend: 'Vidya'
+          },
+          skill_mill: {
+            value: 0.0,
+            legend: 'Skill Mill'
+          },
         }
       },
       {
         chart: "FITNESS",
         values: {
-          body_mind: 0.0,
-          dance: 0.0,
-          cardiovascular: 0.0,
-          fortification: 0.0,
+          body_mind: {
+            value: 0.0,
+            legend: 'Body Mind',
+            description: 'Body Mind (Flow, Postural Flex, Pilates, Body Balance, Bio Master)'
+          },
+          dance: {
+            value: 0.0,
+            legend: 'Dança',
+            description: 'Dança (Fit dance, Zumba, ShBam, Body Jam, Ritmos)'
+          },
+          cardiovascular: {
+            value: 0.0,
+            legend: 'Cardiovascular',
+            description: 'Cardiovascular (Body combat, Power jump, Body step, Bio boxe, Body attack'
+          },
+          fortification: {
+            value: 0.0,
+            legend: 'Fortalecimento',
+            description: 'Fortalecimento (Bode pump, Strong, Core, CX Works, Les Milss grit)'
+          },
         }
       },
     ]
   };
-  
+
   updateStorage(data);
 };
 
@@ -154,7 +200,28 @@ export const normalizePersonToAPI = (data) => {
 				region: "",
 				complement: ""
 			},
-		  acronym: "PTA"
+		  acronym: data.unity
     }
   }
+}
+
+export const translateMuscle = (muscles) => {
+  const translate = muscles.map((name) => {
+    switch (name.toLowerCase()) {
+      case 'tummy':
+        return 'Abdomen'
+      case 'legs':
+        return 'Pernas e glúteos';
+      case 'breast':
+        return 'Peitoral'
+      case 'arms':
+        return 'Braços'
+      case 'back':
+        return 'Costas';
+      default:
+        return '';
+    }
+  });
+
+  return translate;
 }

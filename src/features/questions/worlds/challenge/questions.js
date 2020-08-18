@@ -4,7 +4,8 @@ export const CHALLENGE_QUESTIONS = {
       {
         "id": 1,
         "category": "challenge",
-			  "question": "Selecione por ordem de importância os 3 principais desafios que vamos conquistar juntos!",
+        "question": "Selecione por ordem de importância os 3 principais desafios que vamos conquistar juntos!",
+        "question_legend": "Desafios que conquistaremos juntos.",
         "response_type": "multi_check",
         "max_check": 3,
 			  "responses": [

@@ -35,6 +35,10 @@
   &.right {
     margin-left: 1em;
   }
+
+  &.select-input {
+    width: 97%;
+  }
 }
 
 .complet-input-container {
@@ -69,4 +73,10 @@
   width: 100%;
   text-align: center;
   font-size: 22px;
+}
+.select {
+  width: 40%;
+  height: auto;
+  font-size: 20px;
+  border: 1px solid #ddd;
 }

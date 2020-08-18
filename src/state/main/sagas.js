@@ -67,7 +67,6 @@ export function* workerSavePersonApi(action) {
     yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
     console.error(error);
-    yield put(actions.nextQuestion("/fim-de-jogo"));
     yield put(actions.registerPersonFailure({}));
     alert("Erro ao cadastrar, tente novamente.");
   }
@@ -76,8 +75,7 @@ export function* workerSavePersonApi(action) {
 export function* workerSendEmail(action) {
   const { data } = action.payload;
   try {
-    const response = yield call(sendEmail, data);
-    console.log(response);
+    yield call(sendEmail, data);
   } catch (error) {
     console.error(error);
     yield put(actions.sendEmailFailure({}));

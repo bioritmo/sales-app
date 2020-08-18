@@ -15,6 +15,7 @@ export const HEALTH_QUESTIONS = {
         "id": 1,
         "category": "health",
         "question": "E aí, como anda sua rotina de atividades físicas?",
+        "question_legend": "Rotina de atividades físicas",
         "response_type": "unique_check",
         "responses": [
           {

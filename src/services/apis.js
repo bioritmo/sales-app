@@ -5,7 +5,7 @@ export const apiViaCep = axios.create({
 });
 
 export const apiSendEmail = axios.create({
-  baseURL: `https://v1k2ylxf8l.execute-api.us-east-1.amazonaws.com/`
+  baseURL: `https://lyc3ir1uke.execute-api.us-east-1.amazonaws.com/`
 });
 
 export const apiBioRitmo = axios.create({

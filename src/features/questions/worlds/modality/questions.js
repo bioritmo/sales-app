@@ -22,7 +22,8 @@ export const MODALITY_QUESTIONS = {
       {
         "id": 1,
         "category": "modality",
-			  "question": "Destas opções, quais as 3 que você mais gosta?",
+        "question": "Destas opções, quais as 3 que você mais gosta?",
+        "question_legend": "Modalidades que mais gosta",
         "response_type": "multi_check",
         "max_check": 3,
 			  "responses": [

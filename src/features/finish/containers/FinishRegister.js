@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
@@ -10,6 +12,7 @@ import NextButton from '../../questions/components/nextButton/NextButton';
 import { savePersona, isCPF, getStorageItem } from 'shared/utils';
 //style
 import './FinishRegister.scss';
+import { listUnity, LIST_UNITY_SORTED } from 'shared/constants';
 
 const FinishRegister = () => {
   const dispatch = useDispatch();
@@ -23,6 +26,7 @@ const FinishRegister = () => {
   const [document, setDocument] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [number, setNumber] = useState('');
+  const [unity, setUnity] = useState('');
 
   function onInsertPerson() {
     dispatch(actions.registerPerson(getStorageItem('persona')))
@@ -35,6 +39,7 @@ const FinishRegister = () => {
           email,
           mobile,
           document,
+          unity,
           address: fullAddress,
           address_number: number,
         };
@@ -63,10 +68,36 @@ const FinishRegister = () => {
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
       <div className="form-register">
-        <Question question="Estamos quase finalizando, só precisamos do seus dados de contato." />
+        <Question question="Estamos quase finalizando, só precisamos dos seus dados de contato." />
         
         <div className="form-container">
           <Animated animationInDelay="500" animationInDuration={1000} animationIn="fadeIn" isVisible={true}>
+            <div className="complet-input-container">
+              <div className="label-container">
+                <Question question="Unidade" /> 
+              </div>
+              <div className="input-container select-input">
+                <SelectField
+                  value={unity}
+                  onChange={(event, index, value) => setUnity(value)}
+                  fullWidth
+                  labelStyle={{
+                    color: 'white',
+                    fontSize: 30
+                  }}
+                  menuItemStyle={{
+                    fontSize: 25
+                  }}
+                >
+                  {
+                    LIST_UNITY_SORTED.map(unity => (
+                      <MenuItem value={unity.acronym} primaryText={unity.description} style={{margin: 15}}/>
+                    ))
+                  }
+                </SelectField>
+              </div>
+            </div>
+
             <div className="complet-input-container">
               <div className="label-container">
                 <Question question="Email" /> 

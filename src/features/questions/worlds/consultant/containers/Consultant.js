@@ -77,22 +77,18 @@ const Consultant = ({ match }) => {
           <>
             <div className="consult-questions">
 
-              <div Style="display: flex;width: 90%;margin: 0 auto;">
-
-                <div className="input-container-name-consultant">
+              <div className="input-container-name-consultant">
+                <div className="label-container">
+                  <Question question="Nome" /> 
+                </div>
+                <div className="input-container">
                   <input 
                     className="input-text"
                     type="text"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
-                    placeholder="Nome"
                   />
                 </div>
-
-                <select className="select" placeholder="Unidades" onChange={(e) => setLocal(e.target.value)}>
-                  <option value="0">Unidade</option>
-                  <option value="PTA">Paulista</option>
-                </select>
               </div>
               
               {

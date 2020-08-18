@@ -17,7 +17,7 @@ export const AVATAR_QUESTIONS = {
       {
         "id": 1,
         "category": "profile",
-			  "question": <span><strong>Clique abaixo</strong> a imagem que mais te representa.</span>,
+			  "question": 'Clique abaixo sobre a imagem que mais te representa.',
         "response_type": "check",
 			  "responses": [
           {

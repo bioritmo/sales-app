@@ -9,8 +9,8 @@ import { AlertMsg, Loader, Logo, InputSlider, ProgressBar, Effect } from 'ui';
 import { saveResponseWorld, getStorageItem } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import ImgEffects from 'features/questions/assets/imgs/effects_health.png';
-import walking_m from 'assets/imgs/person_walking_m.png';
-import walking_f from 'assets/imgs/person_walking_f.png';
+import walking_m from 'assets/imgs/person_walking_m.gif';
+import walking_f from 'assets/imgs/person_walking_f.gif';
 import { WorldName } from '../../components/';
 import { HEALTH_QUESTIONS } from '../questions';
 //style

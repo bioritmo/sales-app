@@ -7,7 +7,7 @@ import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
-import { getStorageItem, saveResponseWorld } from 'shared/utils';
+import { getStorageItem, saveResponseWorld, translateMuscle } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import { WorldName } from 'features/questions/worlds/components/';
 import { MICRO_GYM } from 'features/algorithm/algorithm';
@@ -24,20 +24,30 @@ const Result = ({ match }) => {
   const microGymRef = useRef(null);
   const fitnessRef = useRef(null);
   
-  const [urlParam, setUrlParam] = useState(match.params.finished)
   const [datasets, setDatasets] = useState([]);
   const [datasetsMicroGym, setDatasetsMicroGym] = useState([]);
   const [datasetsFitness, setDatasetsFitness] = useState([]);
   const [imc, setImc] = useState(0);
-  const [modality, setModality] = useState(getStorageItem('modality'));
-  const [challenge, setChallenge] = useState(getStorageItem('challenge'));
   const [imgNew, setImgNew] = useState('');
+  const [isPriting, setIsPriting] = useState(false);
+  const [isPritingPage, setIsPritingPage] = useState(false);
+  const [isPritingScreen, setIsPritingScreen] = useState(false);
+  const [descriptionsFitness, setDescriptionsFitness] = useState([]);
+
+  const urlParam = match.params.finished;
+  const muscle = getStorageItem('muscle');
+  const consultName = getStorageItem('consultant')['consultName'];
+  const energy = getStorageItem('health')[1]['response'][0];
+  const physical = getStorageItem('health')[2]['response'][0];
+  const modality = getStorageItem('modality');
+  const challenge = getStorageItem('challenge');
+  const activity = getStorageItem('health')[0];
 
   function calculateTotalPercent(chart) {
     let total = 0;
     const keys = Object.keys(chart['values']);
     keys.map(current => {
-      const totalCurrent = chart['values'][current] * 10;
+      const totalCurrent = chart['values'][current]['value'] * 10;
       total = total + totalCurrent;
     });
     return total;
@@ -50,15 +60,34 @@ const Result = ({ match }) => {
     return `rgb(${r} , ${g} , ${b})`;;
   }
 
+  function getColorMicroGym(microGym) {
+    switch (microGym) {
+      case 'burn':
+        return '#e25822'
+      case 'vidya':
+        return '#dd7b2a'
+      case 'torq':
+        return '#0feb44'
+      case 'skill_mill':
+        return '#5f3007'
+      case 'squad':
+        return '#6619a9'
+      case 'race':
+        return '#c20606'
+      default:
+        generateRandomColor();
+    }
+  }
+
   function makeObjectToChart(chart) {
     const totalBodyBuildind = calculateTotalPercent(chart);
     const keys = Object.keys(chart['values']);
     const values = keys.map((current, index) => {
-      const totalCurrent = chart['values'][current] * 10;
+      const totalCurrent = chart['values'][current]['value'] * 10;
       const percent = (totalCurrent * 100) / totalBodyBuildind;
       return {
-        label: current,
-        backgroundColor: generateRandomColor(),
+        label: `${percent.toFixed(0)}% ${chart['values'][current]['legend']}`,
+        backgroundColor: chart.chart === 'MICRO_GYM' ? getColorMicroGym(current) : generateRandomColor(),
         data: [percent.toFixed(2)],
       }
     });
@@ -68,18 +97,28 @@ const Result = ({ match }) => {
   function makeObjectToChartDoughnut(chart) {
     const totalBodyBuildind = calculateTotalPercent(chart);
     const keys = Object.keys(chart['values']);
+
     const values = keys.map((current, index) => {
-      const totalCurrent = chart['values'][current] * 10;
+      const totalCurrent = chart['values'][current]['value'] * 10;
       const percent = (totalCurrent * 100) / totalBodyBuildind;
       return percent.toFixed(2)
       }
     );
+
     const result = {
       data: values,
       backgroundColor: [generateRandomColor(), generateRandomColor(), generateRandomColor(), generateRandomColor()],
-      labels: keys
+      labels: keys.map((key, index) => `${parseFloat(values[index]).toFixed(0)}% ${chart['values'][key]['legend']}`)
     }
     return result;
+  }
+
+  function makeDescriptionFitness(points) {
+    const keys = Object.keys(points['values']);
+    const descriptions = keys.map(key => (
+      points['values'][key].description
+    ));
+    return descriptions;
   }
 
   useEffect(() => {
@@ -92,7 +131,7 @@ const Result = ({ match }) => {
     const weightCalc = health[weight].response[0] * 100;
     const heightCalc = health[height].response[0]
     setImc((weightCalc / (heightCalc * heightCalc) * 100).toFixed(2));
-  }, [])
+  }, []);
 
   useEffect(() => {
     const points = getStorageItem('points');
@@ -102,6 +141,7 @@ const Result = ({ match }) => {
     setDatasets(makeObjectToChart(BODYBUILDING_PROGRAMS))
     setDatasetsMicroGym(makeObjectToChart(MICRO_GYM))
     setDatasetsFitness(makeObjectToChartDoughnut(FITNESS))
+    setDescriptionsFitness(makeDescriptionFitness(FITNESS));
   }, []);
 
   useEffect(() => {
@@ -204,20 +244,45 @@ const Result = ({ match }) => {
       const printArea = document.getElementById("result-container");
       window.scrollTo(0,0);
       html2canvas(printArea, {
+        letterRendering: 1,
+        allowTaint: true,
+        foreignObjectRendering: true,
       }).then(canvas => {
-        const dataURL = canvas.toDataURL();
-        console.log(dataURL)
+        let dataURL = canvas.toDataURL('image/jpeg');
         setImgNew(dataURL)
         dispatch(actions.sendEmail({
           email: person.email,
           img: dataURL,
         }))
-        // dispatch(actions.nextQuestion("/"));
+        dispatch(actions.nextQuestion("/"));
       })
     } else {
       dispatch(actions.nextQuestion("/consultor/perguntas"));
     }
-}
+  }
+
+  function contract() {
+    printScreen();
+    window.open(`https://app.bioritmo.com.br/people/${person.id}`, "_blank");
+  }
+
+  useEffect(() => {
+    if(isPriting) {
+      window.print();
+      setIsPriting(false);
+    } 
+  }, [isPriting])
+
+  useEffect(() => {
+    if(isPritingScreen) {
+      printScreen();
+      setIsPritingScreen(false);
+    } 
+  }, [isPritingScreen])
+
+  function print(){
+    setIsPriting(true);
+  }
 
   return (
     <div id="result-container" className="result-container">
@@ -229,18 +294,38 @@ const Result = ({ match }) => {
         <div className="response-result-container">
           <div className="responses-user-container">
             <div>
-              <p className="title-question-result">{modality[0].question.question}</p>
+              <p className="title-question-result">{modality[0].question.question_legend}</p>
               <p className="response-question-result">{modality[0].response.join(', ')}</p>
             </div>
             <div>
-              <p className="title-question-result">{challenge[0].question.question}</p>
+              <p className="title-question-result">{challenge[0].question.question_legend}</p>
               <p className="response-question-result">{challenge[0].response.join(', ')}</p>
             </div>
+            <div>
+              <p className="title-question-result">{activity.question.question_legend}</p>
+              <p className="response-question-result">{activity.response.title}</p>
+            </div>
+            <div>
+              <p className="title-question-result">{muscle[0].question.question_legend}</p>
+              <p className="response-question-result">{translateMuscle(muscle[0].response).join(', ')}</p>
+            </div>
+            {
+              urlParam === 'resultados' && (
+                <div>
+                  <p className="title-question-result">Consultor</p>
+                  <p className="response-question-result">{consultName}</p>
+                </div>
+              )
+            }
           </div>
           <div className="imc-container">
             <p className="title-question-result">IMC</p>
             <p className="response-question-result number">{imc}</p>
-            </div>
+            <p className="title-question-result">Energia</p>
+            <p className="response-question-result number">{energy}</p>
+            <p className="title-question-result">Condição física</p>
+            <p className="response-question-result number">{physical}</p>
+          </div>
         </div>
 
         <div className="chart-content">
@@ -255,12 +340,40 @@ const Result = ({ match }) => {
 
         <div className="chart-content">
           <p className="title-charts">Programas de ginástica</p>
-          <canvas ref={fitnessRef} width="900px" height="500px"></canvas>
+          <canvas ref={fitnessRef} width="800px" height="400px"></canvas>
+          <div className="description-fitness-container">
+            {
+              descriptionsFitness.map(description => (
+                <p className="description-fitness">{description}</p>
+              ))
+            }
+          </div>
+          
         </div>        
       </div>
-      <div Style="margin-bottom: 50px;">
-        <NextButton onClick={() => printScreen()} label="Finalizar" />
-      </div>
+      {
+        !isPriting && !isPritingScreen ? (
+          <>
+            {
+              urlParam === 'resultados' ? (
+                <div Style="margin-bottom: 50px;">
+                  <NextButton onClick={() => print()} label="Imprimir" />
+                  <NextButton onClick={() => setIsPritingScreen(true)} label="Finalizar" />
+                  <NextButton onClick={() => contract()} label="Finalizar e contratar" />
+                </div>
+              ) : (
+                <div Style="margin-bottom: 50px;">
+                  <NextButton onClick={() => setIsPritingScreen(true)} label="Finalizar" />
+                </div>
+              )
+            }
+          </>
+        ) : isPriting && (
+          <textarea className="annotations" rows="25" cols="33">
+            Anotações
+          </textarea>
+        )
+      }
     </div>
   )
 }
