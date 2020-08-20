@@ -252,6 +252,7 @@ const Result = ({ match }) => {
         setImgNew(dataURL)
         dispatch(actions.sendEmail({
           email: person.email,
+          name: person.name,
           img: dataURL,
         }))
         dispatch(actions.nextQuestion("/"));

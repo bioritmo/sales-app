@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import progress_m from 'assets/imgs/corredor_m.png';
+import progress_m from 'assets/imgs/corredor_m.gif';
 import final_progress_m from 'assets/imgs/final_corredor_m.png';
-import progress_f from 'assets/imgs/corredor_f.png';
+import progress_f from 'assets/imgs/corredor_f.gif';
 import final_progress_f from 'assets/imgs/final_corredor_f.png';
 import { getStorageItem } from 'shared/utils';
 

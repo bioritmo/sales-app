@@ -15,6 +15,7 @@ import { CardSelectItem, SelectItemLine } from '../components';
 import { HEALTH_QUESTIONS } from '../questions';
 //style
 import './Physical.scss';
+import { zIndex } from 'material-ui/styles';
 
 const HealthPhysical = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const HealthPhysical = () => {
                     icon=''
                     isSelected={selectedItem === index}
                     onSelectItem={() => setSelectedItem(index)}
-                    imgSrc={response.img(getStorageItem('persona')['sex'])}
+                    imgSrc={response.img(getStorageItem('persona')['sex'], selectedItem === index)}
                   />
                 </Animated>
               ))

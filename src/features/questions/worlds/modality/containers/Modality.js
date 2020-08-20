@@ -77,7 +77,7 @@ const Modality = () => {
               MODALITY_QUESTIONS.questions[0].responses.map((response, index) => (
                 <Animated animationInDelay={(index + 1) * 250} animationInDuration={1000} animationIn="rotateIn" isVisible={true}>
                   <CardSelectModality
-                    img={response.img(getStorageItem('persona')['sex'])}
+                    img={response.img(getStorageItem('persona')['sex'], selectedItems.find(i => i === response.title))}
                     text={response.title}
                     onSelectItem={() => onSelectItem(response.title, response.points)}
                     isSelected={selectedItems.find(i => i === response.title)}

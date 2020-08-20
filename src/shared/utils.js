@@ -110,7 +110,7 @@ export const setDefaultStorage = () => {
           cardiovascular: {
             value: 0.0,
             legend: 'Cardiovascular',
-            description: 'Cardiovascular (Body combat, Power jump, Body step, Bio boxe, Body attack'
+            description: 'Cardiovascular (Body combat, Power jump, Body step, Bio boxe, Body attack)'
           },
           fortification: {
             value: 0.0,

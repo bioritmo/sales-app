@@ -1,12 +1,18 @@
 import training_m from 'assets/imgs/training_m.png';
+import training_animation_m from 'assets/imgs/training_m.gif';
 import not_training_m from 'assets/imgs/not_training_m.png';
+import not_training_animation_m from 'assets/imgs/not_training_m.gif';
 import never_training_m from 'assets/imgs/never_training_m.png';
 import sporadically_training_m from 'assets/imgs/sporadically_training_m.png';
+import sporadically_training_animation_m from 'assets/imgs/sporadically_training_m.gif';
 
 import training_f from 'assets/imgs/training_f.png';
+import training_animation_f from 'assets/imgs/training_f.gif';
 import not_training_f from 'assets/imgs/not_training_f.png';
+import not_training_animation_f from 'assets/imgs/not_training_f.gif';
 import never_training_f from 'assets/imgs/never_training_f.png';
 import sporadically_training_f from 'assets/imgs/sporadically_training_f.png';
+import sporadically_training_animation_f from 'assets/imgs/sporadically_training_f.gif';
 
 export const HEALTH_QUESTIONS = {
   "questions": 
@@ -22,7 +28,7 @@ export const HEALTH_QUESTIONS = {
             "id": 1,
             "title": "Estou treinando",
             "icon": "",
-            "img": (sex) => (sex === 'sex-m' ? training_m : training_f),
+            "img": (sex, isAnimation) => !isAnimation ? (sex === 'sex-m' ? training_m : training_f) : (sex === 'sex-m' ? training_animation_m : training_animation_f),
             points: [
               {
                 chart: "BODYBUILDING_PROGRAMS",
@@ -39,7 +45,7 @@ export const HEALTH_QUESTIONS = {
             "id": 2,
             "title": "Treino esporadicamente",
             "icon": "",
-            "img": (sex) => (sex === 'sex-m' ? sporadically_training_m : sporadically_training_f),
+            "img": (sex, isAnimation) => !isAnimation ? (sex === 'sex-m' ? sporadically_training_m : sporadically_training_f) : (sex === 'sex-m' ? sporadically_training_animation_m : sporadically_training_animation_f),
             points: [
               {
                 chart: "BODYBUILDING_PROGRAMS",
@@ -56,7 +62,7 @@ export const HEALTH_QUESTIONS = {
             "id": 3,
             "title": "Não estou treinando",
             "icon": "",
-            "img": (sex) => (sex === 'sex-m' ? not_training_m : not_training_f),
+            "img": (sex, isAnimation) => !isAnimation ? (sex === 'sex-m' ? not_training_m : not_training_f) : (sex === 'sex-m' ? not_training_animation_m : not_training_animation_f),
             points: [
               {
                 chart: "BODYBUILDING_PROGRAMS",

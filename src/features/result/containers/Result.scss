@@ -2,6 +2,7 @@
 
 body {
   @include background-gradient($bg-dark-blue, $bg-light-blue);
+  font-family: 'Roboto';
 }
 
 .result-container {

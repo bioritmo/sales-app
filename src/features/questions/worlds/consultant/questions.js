@@ -94,7 +94,7 @@ export const CONSULT_QUESTIONS = {
         },
         {
           id: 2,
-          text: 'De 2x a 5x'
+          text: 'De 3x a 4x'
         },
         {
           id: 3,

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { AlertMsg, Loader, Logo, Effect } from 'ui';
 import { updateStorage, setDefaultStorage } from 'shared/utils';
 import ImgEffects from 'assets/imgs/effects_start.png';
-import ImgStart from 'assets/imgs/img_start.png';
+import ImgStart from 'assets/imgs/img_start.gif';
 //style
 import './Main.scss';
 

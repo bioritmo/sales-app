@@ -1,15 +1,25 @@
 import React from 'react';
 import bem_estar_m from 'assets/imgs/avatar_bemestar_m.png';
+import bem_estar_animado_m from 'assets/imgs/avatar_bemestar_m.gif';
 import espiritual_m from 'assets/imgs/avatar_espiritual_m.png';
+import espiritual_animado_m from 'assets/imgs/avatar_espiritual_m.gif';
 import estetico_m from 'assets/imgs/avatar_estetico_m.png';
+import estetico_animado_m from 'assets/imgs/avatar_estetico_m.gif';
 import resistencia_m from 'assets/imgs/avatar_resistencia_m.png';
+import resistencia_animado_m from 'assets/imgs/avatar_resistencia_m.gif';
 import sociavel_m from 'assets/imgs/avatar_sociavel_m.png';
+import sociavel_animado_m from 'assets/imgs/avatar_sociavel_m.gif';
 
 import bem_estar_f from 'assets/imgs/avatar_bemestar_f.png';
+import bem_estar_animado_f from 'assets/imgs/avatar_bemestar_f.gif';
 import espiritual_f from 'assets/imgs/avatar_espiritual_f.png';
+import espiritual_animado_f from 'assets/imgs/avatar_espiritual_f.gif';
 import estetico_f from 'assets/imgs/avatar_estetico_f.png';
+import estetico_animado_f from 'assets/imgs/avatar_estetico_f.gif';
 import resistencia_f from 'assets/imgs/avatar_resistencia_f.png';
+import resistencia_animado_f from 'assets/imgs/avatar_resistencia_f.gif';
 import sociavel_f from 'assets/imgs/avatar_sociavel_f.png';
+import sociavel_animado_f from 'assets/imgs/avatar_sociavel_f.gif';
 
 export const AVATAR_QUESTIONS = {
   "questions": 
@@ -23,7 +33,9 @@ export const AVATAR_QUESTIONS = {
           {
             id: 1,
             "title": "bem-estar",
-            "img": (sex) => (sex === 'sex-m' ? bem_estar_m : bem_estar_f),
+            "img": (sex, isAnimation) => !isAnimation ?
+              (sex === 'sex-m' ? bem_estar_m : bem_estar_f) :
+              (sex === 'sex-m' ? bem_estar_animado_m : bem_estar_animado_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -50,7 +62,9 @@ export const AVATAR_QUESTIONS = {
           {
             id: 2,
             "title": "resistencia e energia",
-            "img": (sex) => (sex === 'sex-m' ? resistencia_m : resistencia_f),
+            "img": (sex, isAnimation) => !isAnimation ?
+              (sex === 'sex-m' ? resistencia_m : resistencia_f):
+              (sex === 'sex-m' ? resistencia_animado_m : resistencia_animado_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -77,7 +91,9 @@ export const AVATAR_QUESTIONS = {
           {
             id: 3,
             "title": "sociavel",
-            "img": (sex) => (sex === 'sex-m' ? sociavel_m : sociavel_f),
+            "img": (sex, isAnimation) => !isAnimation ?
+              (sex === 'sex-m' ? sociavel_m : sociavel_f):
+              (sex === 'sex-m' ? sociavel_animado_m : sociavel_animado_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -104,7 +120,9 @@ export const AVATAR_QUESTIONS = {
           {
             id: 4,
             "title": "estético",
-            "img": (sex) => (sex === 'sex-m' ? estetico_m : estetico_f),
+            "img": (sex, isAnimation) => !isAnimation ?
+              (sex === 'sex-m' ? estetico_m : estetico_f):
+              (sex === 'sex-m' ? estetico_animado_m : estetico_animado_f),
             points: [
               {
                 chart: "MICRO_GYM",
@@ -131,7 +149,9 @@ export const AVATAR_QUESTIONS = {
           {
             id: 5,
             "title": "espiritual",
-            "img": (sex) => (sex === 'sex-m' ? espiritual_m : espiritual_f),
+            "img": (sex, isAnimation) => !isAnimation ?
+              (sex === 'sex-m' ? espiritual_m : espiritual_f):
+              (sex === 'sex-m' ? espiritual_animado_m : espiritual_animado_f),
             points: [
               {
                 chart: "MICRO_GYM",
