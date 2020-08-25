@@ -2,7 +2,10 @@
 
 body {
   @include background-gradient($bg-dark-blue, $bg-light-blue);
-  font-family: 'Roboto';
+}
+
+.wrapper {
+  font-family: Roboto;
 }
 
 .result-container {
@@ -10,6 +13,7 @@ body {
   width: 100%;
   height: auto;
   position: absolute;
+  
 
   @media print {
     @include background-gradient($bg-dark-blue, $bg-light-blue);

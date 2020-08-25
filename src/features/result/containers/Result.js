@@ -286,95 +286,97 @@ const Result = ({ match }) => {
   }
 
   return (
-    <div id="result-container" className="result-container">
-      { isLoading && ( <Loader /> )}
-      { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
-      <WorldName name="RESULTADO" />
-      <Logo />
-      <div className="charts-container">
-        <div className="response-result-container">
-          <div className="responses-user-container">
-            <div>
-              <p className="title-question-result">{modality[0].question.question_legend}</p>
-              <p className="response-question-result">{modality[0].response.join(', ')}</p>
+    <div className="wrapper">
+      <div id="result-container" className="result-container">
+        { isLoading && ( <Loader /> )}
+        { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
+        <WorldName name="RESULTADO" />
+        <Logo />
+        <div className="charts-container">
+          <div className="response-result-container">
+            <div className="responses-user-container">
+              <div>
+                <p className="title-question-result">{modality[0].question.question_legend}</p>
+                <p className="response-question-result">{modality[0].response.join(', ')}</p>
+              </div>
+              <div>
+                <p className="title-question-result">{challenge[0].question.question_legend}</p>
+                <p className="response-question-result">{challenge[0].response.join(', ')}</p>
+              </div>
+              <div>
+                <p className="title-question-result">{activity.question.question_legend}</p>
+                <p className="response-question-result">{activity.response.title}</p>
+              </div>
+              <div>
+                <p className="title-question-result">{muscle[0].question.question_legend}</p>
+                <p className="response-question-result">{translateMuscle(muscle[0].response).join(', ')}</p>
+              </div>
+              {
+                urlParam === 'resultados' && (
+                  <div>
+                    <p className="title-question-result">Consultor</p>
+                    <p className="response-question-result">{consultName}</p>
+                  </div>
+                )
+              }
             </div>
-            <div>
-              <p className="title-question-result">{challenge[0].question.question_legend}</p>
-              <p className="response-question-result">{challenge[0].response.join(', ')}</p>
+            <div className="imc-container">
+              <p className="title-question-result">IMC</p>
+              <p className="response-question-result number">{imc}</p>
+              <p className="title-question-result">Energia</p>
+              <p className="response-question-result number">{energy}</p>
+              <p className="title-question-result">Condição física</p>
+              <p className="response-question-result number">{physical}</p>
             </div>
-            <div>
-              <p className="title-question-result">{activity.question.question_legend}</p>
-              <p className="response-question-result">{activity.response.title}</p>
-            </div>
-            <div>
-              <p className="title-question-result">{muscle[0].question.question_legend}</p>
-              <p className="response-question-result">{translateMuscle(muscle[0].response).join(', ')}</p>
-            </div>
-            {
-              urlParam === 'resultados' && (
-                <div>
-                  <p className="title-question-result">Consultor</p>
-                  <p className="response-question-result">{consultName}</p>
-                </div>
-              )
-            }
           </div>
-          <div className="imc-container">
-            <p className="title-question-result">IMC</p>
-            <p className="response-question-result number">{imc}</p>
-            <p className="title-question-result">Energia</p>
-            <p className="response-question-result number">{energy}</p>
-            <p className="title-question-result">Condição física</p>
-            <p className="response-question-result number">{physical}</p>
+
+          <div className="chart-content">
+            <p className="title-charts">MICRO ACADEMIAS</p>
+            <canvas ref={microGymRef} width="900px" height="500px"></canvas>
           </div>
-        </div>
 
-        <div className="chart-content">
-          <p className="title-charts">MICRO ACADEMIAS</p>
-          <canvas ref={microGymRef} width="900px" height="500px"></canvas>
-        </div>
-
-        <div className="chart-content">
-          <p className="title-charts">Programas de hipertrofia</p>
-          <canvas ref={canvasRef} width="900px" height="500px"></canvas>
-        </div>
-
-        <div className="chart-content">
-          <p className="title-charts">Programas de ginástica</p>
-          <canvas ref={fitnessRef} width="800px" height="400px"></canvas>
-          <div className="description-fitness-container">
-            {
-              descriptionsFitness.map(description => (
-                <p className="description-fitness">{description}</p>
-              ))
-            }
+          <div className="chart-content">
+            <p className="title-charts">Programas de hipertrofia</p>
+            <canvas ref={canvasRef} width="900px" height="500px"></canvas>
           </div>
-          
-        </div>        
+
+          <div className="chart-content">
+            <p className="title-charts">Programas de ginástica</p>
+            <canvas ref={fitnessRef} width="800px" height="400px"></canvas>
+            <div className="description-fitness-container">
+              {
+                descriptionsFitness.map(description => (
+                  <p className="description-fitness">{description}</p>
+                ))
+              }
+            </div>
+            
+          </div>        
+        </div>
+        {
+          !isPriting && !isPritingScreen ? (
+            <>
+              {
+                urlParam === 'resultados' ? (
+                  <div Style="margin-bottom: 50px;">
+                    <NextButton onClick={() => print()} label="Imprimir" />
+                    <NextButton onClick={() => setIsPritingScreen(true)} label="Finalizar" />
+                    <NextButton onClick={() => contract()} label="Finalizar e contratar" />
+                  </div>
+                ) : (
+                  <div Style="margin-bottom: 50px;">
+                    <NextButton onClick={() => setIsPritingScreen(true)} label="Finalizar" />
+                  </div>
+                )
+              }
+            </>
+          ) : isPriting && (
+            <textarea className="annotations" rows="25" cols="33">
+              Anotações
+            </textarea>
+          )
+        }
       </div>
-      {
-        !isPriting && !isPritingScreen ? (
-          <>
-            {
-              urlParam === 'resultados' ? (
-                <div Style="margin-bottom: 50px;">
-                  <NextButton onClick={() => print()} label="Imprimir" />
-                  <NextButton onClick={() => setIsPritingScreen(true)} label="Finalizar" />
-                  <NextButton onClick={() => contract()} label="Finalizar e contratar" />
-                </div>
-              ) : (
-                <div Style="margin-bottom: 50px;">
-                  <NextButton onClick={() => setIsPritingScreen(true)} label="Finalizar" />
-                </div>
-              )
-            }
-          </>
-        ) : isPriting && (
-          <textarea className="annotations" rows="25" cols="33">
-            Anotações
-          </textarea>
-        )
-      }
     </div>
   )
 }
