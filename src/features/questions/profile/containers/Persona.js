@@ -1,17 +1,19 @@
 // external
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { AlertMsg, Loader, Logo, ProgressBar, Effect } from 'ui';
 import { savePersona } from 'shared/utils';
 import Question from '../../components/question/Question';
 import NextButton from '../../components/nextButton/NextButton';
 import FSymbol from '../../assets/imgs/f_symbol.png';
 import MSymbol from '../../assets/imgs/m_symbol.png';
+import ImgEffects from '../../assets/imgs/effects.png';
 //style
 import './Persona.scss';
+import { Redirect } from 'react-router';
 
 const Persona = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,13 @@ const Persona = () => {
     }
   }
 
+  function changeName(value){
+    setName(value);
+    if(name !== '' && sex !== '' ) {
+      setIsSelectAvatar(true);
+    }
+  }
+
   function onSelectSex(event) {
     setSex(event.target.name);
 
@@ -45,23 +54,24 @@ const Persona = () => {
       sex,
     };
     savePersona(persona);
-    dispatch(actions.nextQuestion('/selecione-avatar'));
+    dispatch(actions.nextQuestion("/selecione-avatar"));
   }
 
   return (
     <div className="persona-container">
+      <Effect img={ImgEffects} />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
       <div className="name-avatar">
-        <Question question="ENTRE COM O SEU NOME" />
+        <Question question="ENTRE COM O SEU NOME COMPLETO" pipeColor="#bf9604"/>
         
         <div className="sex-container">
-          <Animated style={{display: 'flex'}} animationInDelay="500" animationInDuration={1000} animationIn="fadeIn" isVisible={true}>
+          <Animated style={{ display: 'flex' }} animationInDelay="500" animationInDuration={1000} animationIn="fadeIn" isVisible={true}>
             <input 
               className="input-name"
               type="text"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => changeName(e.target.value)}
               value={name}
             />
           </Animated>
@@ -89,7 +99,6 @@ const Persona = () => {
             <NextButton onClick={() => onSavePersona()} />
           )}
       </div>
-      <ProgressBar />
     </div>
   )
 }

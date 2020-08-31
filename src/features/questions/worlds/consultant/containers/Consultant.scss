@@ -1,0 +1,37 @@
+@import '../../../../../shared/style/variables.scss';
+
+.consultant-container {
+  @include background-gradient($bg-dark-red, $bg-light-red);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+
+  &.questions {
+    height: auto;
+    overflow: auto;
+  }
+}
+
+.consult-questions {
+  width: 100%;
+  margin-top: 10em;
+  height: 100%;
+}
+
+.warning-consultant {
+  text-align: center;
+  font-size: 38px;
+  width: 70%;
+  padding: 2em;
+  color: white;
+  font-family: Roboto;
+  margin: 10.5em auto;
+  border: solid 1px orange;
+}
+
+.input-container-name-consultant {
+  margin-top: 4em;
+  width: 90%;
+  margin: 0 auto;
+}

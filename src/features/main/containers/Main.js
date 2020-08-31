@@ -6,8 +6,10 @@ import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
 import { Link } from 'react-router-dom';
-import { AlertMsg, Loader } from 'ui';
+import { AlertMsg, Loader, Logo, Effect } from 'ui';
 import { updateStorage, setDefaultStorage } from 'shared/utils';
+import ImgEffects from 'assets/imgs/effects_start.png';
+import ImgStart from 'assets/imgs/img_start.gif';
 //style
 import './Main.scss';
 
@@ -23,10 +25,13 @@ const Main = () => {
 
   return (
     <div className="container-main">
+      <Effect img={ImgEffects} />
       <div className="start-options">
+        <Logo />
         { isLoading && ( <Loader /> )}
         { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
         <div className="bg-start">
+          <img src={ImgStart} className="img-start" />
           <Animated animationInDelay={1500} animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
             <div className="start-game-action">
               <Link to="/dados-iniciais" Style="text-decoration: none">

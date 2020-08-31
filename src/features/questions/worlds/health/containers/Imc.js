@@ -1,15 +1,18 @@
 // external
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, InputSlider, ProgressBar } from 'ui';
-import { saveResponseWorld } from 'shared/utils';
+import { AlertMsg, Loader, Logo, InputSlider, ProgressBar, Effect } from 'ui';
+import { saveResponseWorld, calculatePoints, getStorageItem } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
-import walking from 'assets/imgs/person_walking.png';
+import ImgEffects from 'features/questions/assets/imgs/effects_health.png';
+import walking_m from 'assets/imgs/person_walking_m.gif';
+import walking_f from 'assets/imgs/person_walking_f.gif';
 import { WorldName } from '../../components/';
-import { HEALTH_QUESTIONS } from '../questions';
+import { HEALTH_QUESTIONS, POINTS_IMC } from '../questions';
 //style
 import './Imc.scss';
 
@@ -20,6 +23,13 @@ const HealthImc = () => {
 
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
+  const [imc, setImc] = useState(0);
+
+  useEffect(() => {
+    if (imc < 19) return calculatePoints(POINTS_IMC['pointsMin']['points'], true);
+    if (imc > 19 && imc < 25) return calculatePoints(POINTS_IMC['pointsMed']['points'], true);
+    if (imc > 25) return calculatePoints(POINTS_IMC['pointsMax']['points'], true);
+  }, [imc])
 
   function saveResponse() {
     saveResponseWorld('health', {
@@ -32,11 +42,14 @@ const HealthImc = () => {
       response: height
     });
 
-    dispatch(actions.nextQuestion('/saude-nivel-de-energia'));
+    const weightCalc = weight * 100;
+    setImc(weightCalc / (height * height) * 100);
+    dispatch(actions.nextQuestion("/modalidades"));
   };
 
   return (
     <div className="health-container">
+      <Effect img={ImgEffects} />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO SAÚDE" />
@@ -52,6 +65,7 @@ const HealthImc = () => {
                 onChange={(value) => setWeight(value)}
                 onUpdate={(value) => setWeight(value)}
                 currentValue={`${weight} cm`}
+                height='42em'
               />
             </div>
           </Animated>
@@ -64,17 +78,20 @@ const HealthImc = () => {
                 onChange={(value) => setHeight(value)}
                 onUpdate={(value) => setHeight(value)}
                 currentValue={`${height} kg`}
+                height='42em'
               />
             </div>
           </Animated>
 
           <Animated style={{width: '33%'}} animationInDelay={2000} animationInDuration={2000} animationIn="fadeIn" isVisible={true}>
             <div className="response-item img-left">
-              <img src={walking} Style="width: 33em;"/>
+              <img src={getStorageItem('persona')['sex'] === 'sex-m' ? walking_m : walking_f} className="img-walking"/>
             </div>
           </Animated>
           
         </div>
+      </div>
+      <div className="action-imc">
         <NextButton onClick={() => saveResponse()} />
       </div>
       <ProgressBar />

@@ -1,13 +1,26 @@
 .response-container-energy {
   display: flex;
   width: 97%;
+  overflow: hidden;
+  margin-top: -4em;
 }
 
-.response-item {
+.response-item-energy {
   width: 100%;
   text-align: center;
+  margin-left: 2em;;
+  height: 45em;
 }
 
 .img-walking {
-  width: 33em;
+  width: 29em;
+}
+
+.question-energy {
+  margin-top: -5em;
+  margin-bottom: 6em;
+}
+
+.action-energy {
+  margin-top: -30px;
 }

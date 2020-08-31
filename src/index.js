@@ -13,6 +13,7 @@ import WebfontLoader from '@dr-kobros/react-webfont-loader';
 import Root from './routes/Root';
 import { store, persistor } from './state/configureStore';
 import history from './routes/history';
+import { ConnectedRouter } from 'connected-react-router';
 
 const config = {
   google: {
@@ -36,9 +37,9 @@ const render = () => {
       <PersistGate loading={null} persistor={persistor}>
         <WebfontLoader config={config}>
           <MuiThemeProvider muiTheme={muiTheme}>
-            <Router history={history}>
+          <ConnectedRouter history={history}>
               <Root />
-            </Router>
+              </ConnectedRouter>
           </MuiThemeProvider>
         </WebfontLoader>
       </PersistGate>

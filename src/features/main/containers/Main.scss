@@ -14,11 +14,15 @@ body {
   position: absolute;
 }
 
+.img-start {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 19em;
+}
+
 .bg-start {
   width: 100%;
   height: 100%;
-  background-image: url('../../../assets/imgs/img_start.png');
-  background-size: contain;
 }
 
 .start-options {
@@ -37,7 +41,7 @@ body {
 
 .start-game-action {
   text-align: center;
-  margin-top: 63em;
+  margin-top: 2em;
 }
 
 .btn-start {
@@ -60,8 +64,4 @@ body {
   font-family: 'Roboto';
   margin: 0;
   padding: 0;
-}
-
-.img-start {
-  width: 60em;
 }

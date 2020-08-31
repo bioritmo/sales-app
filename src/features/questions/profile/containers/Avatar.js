@@ -2,13 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
-import { getStorageItem, saveResponseWorld } from 'shared/utils';
+import { AlertMsg, Loader, Logo, ProgressBar, Effect } from 'ui';
+import { getStorageItem, saveResponseWorld, calculatePoints } from 'shared/utils';
 import Question from '../../components/question/Question';
 import NextButton from '../../components/nextButton/NextButton';
 import { AVATAR_QUESTIONS } from '../questions';
+import ImgEffects from '../../assets/imgs/effects_avatar.png';
 //style
 import './Avatar.scss';
 
@@ -30,16 +32,18 @@ const Avatar = () => {
       question: AVATAR_QUESTIONS.questions[0],
       response
     });
-    dispatch(actions.nextQuestion('/saude-fisico'));
+    calculatePoints(AVATAR_QUESTIONS.questions[0].responses[selectedItem].points, true);
+    dispatch(actions.nextQuestion("/saude-fisico"));
   }
 
   return (
     <div className="avatar-container">
+      <Effect img={ImgEffects} />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
       <div className="name-avatar-container">
-        <Question question={`${name.toUpperCase()}, ${AVATAR_QUESTIONS.questions[0].question}`} />
+        <Question question={AVATAR_QUESTIONS.questions[0].question} pipeColor="#bf9604"/>
         <div className="container-select-avatar">
           {
             AVATAR_QUESTIONS.questions[0].responses.map((response, index) => (
@@ -48,8 +52,11 @@ const Avatar = () => {
                   className={index == 2 ? "avatar-item center" : "avatar-item"}
                   onClick={() => setSelectedItem(index)}
                 >
-                  <p className={selectedItem === index && 'selected'}>{response.title}</p>
-                  <img src={response.img} />
+                  {/* <p className={selectedItem === index && 'selected'}>{response.title}</p> */}
+                  <img
+                    src={response.img(getStorageItem('persona')['sex'], selectedItem === index)} 
+                    // className={selectedItem === index && 'selected'}
+                  />
                 </div>
               </Animated>
             ))

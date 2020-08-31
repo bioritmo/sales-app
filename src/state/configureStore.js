@@ -15,17 +15,17 @@ import allSagas from './rootSaga';
 const sagaMiddleware = createSagaMiddleware();
 const rootSaga = allSagas;
 
-let middleware = [sagaMiddleware];
+let middleware = [sagaMiddleware,  routerMiddleware(history)];
 
 if (process.env.NODE_ENV === 'development') {
   const logger = createLogger({
     collapsed: (getState, action) => action.type.includes('@@redux-form'),
   });
-  middleware = [...middleware, logger, routerMiddleware(history)];
+  middleware = [...middleware, logger];
 }
 
 const composeEnhancers = composeWithDevTools({});
-const store = createStore(persistReducers(reducers), composeEnhancers(applyMiddleware(...middleware)));
+const store = createStore(connectRouter(history)(persistReducers(reducers)), composeEnhancers(applyMiddleware(...middleware)));
 const persistor = persistStore(store)
 
 sagaMiddleware.run(rootSaga);
