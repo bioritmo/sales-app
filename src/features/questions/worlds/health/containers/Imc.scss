@@ -9,17 +9,18 @@
   width: 100%;
   text-align: center;
   margin-left: 0;
+  margin-left: -1em;
 
   &.img-left {
-    margin-left: -2em;
+    margin-left: -1em;
     margin-top: 3em;
-    width: 23em;
+    width: 21em;
   }
 }
 
 .img-walking {
-  width: 27em;
-  margin-left: -2em;
+  width: 21em;
+  margin-left: -3em;
 }
 
 .action-imc {

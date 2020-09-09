@@ -59,7 +59,7 @@ const HealthEnergy = () => {
                 onChange={(value) => setEnergy(value)}
                 onUpdate={(value) => setEnergy(value)}
                 currentValue={energy}
-                height='36em'
+                height='30em'
                 isMin
               />
             </div>
@@ -73,15 +73,15 @@ const HealthEnergy = () => {
                 onChange={(value) => setPhysic(value)}
                 onUpdate={(value) => setPhysic(value)}
                 currentValue={physic}
-                height='36em'
+                height='30em'
                 isMin
               />
             </div>
           </Animated>
 
           <Animated style={{width: '50%'}} animationInDelay={2000} animationInDuration={2000} animationIn="fadeIn" isVisible={true}>
-            <div className="response-item img-right">
-              <img src={getStorageItem('persona')['sex'] === 'sex-m' ? walking_m : walking_f} className="img-walking"/>
+            <div className="response-item">
+              <img src={getStorageItem('persona')['sex'] === 'sex-m' ? walking_m : walking_f} className="img-walking-energy"/>
             </div>
           </Animated>
         </div>

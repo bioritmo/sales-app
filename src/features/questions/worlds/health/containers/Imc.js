@@ -65,7 +65,7 @@ const HealthImc = () => {
                 onChange={(value) => setWeight(value)}
                 onUpdate={(value) => setWeight(value)}
                 currentValue={`${weight} cm`}
-                height='42em'
+                height='35em'
               />
             </div>
           </Animated>
@@ -78,7 +78,7 @@ const HealthImc = () => {
                 onChange={(value) => setHeight(value)}
                 onUpdate={(value) => setHeight(value)}
                 currentValue={`${height} kg`}
-                height='42em'
+                height='35em'
               />
             </div>
           </Animated>

@@ -6,6 +6,7 @@ body {
 
 .wrapper {
   font-family: Roboto;
+  padding: 20px;
 }
 
 .result-container {
@@ -22,13 +23,12 @@ body {
 }
 
 .charts-container {
-  width: 750px;
+  width: 670px;
   margin: 6em auto;
 }
 
 .response-result-container {
   display: flex;
-  justify-content: space-between;
   margin: 0px 0px 3em 0px;
   font-family: Roboto;
   color: #CCC
@@ -60,6 +60,7 @@ body {
 .imc-container {
   text-align: center;
   padding: 20px;
+  margin-left: -5%;
 }
 
 .title-charts {
