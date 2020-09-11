@@ -9,17 +9,17 @@
 
 .response-container-challenge {
   width: 100%;
-  margin: 0em auto;
+  margin: -1em auto;
   display: flex;
 }
 
 .text-card-challenge {
-  font-size: 19px;
+  font-size: 16px;
   color: white;
   font-weight: bold;
   padding: 12px;
   background-image: linear-gradient(180deg, #edb13b, #e5884b);
-  width: 230px;
+  width: 190px;
   text-align: center;
   font-family: Roboto;
   border-radius: 5px;
@@ -48,8 +48,8 @@
 }
 
 .podium-container-first {
-  width: 110px;
-  height: 150px;
+  width: 80px;
+  height: 130px;
   border: solid 3px gold;
   background-image: linear-gradient(180deg, #f8d14e, #ff6e00);
   border-radius: 10px;
@@ -61,8 +61,8 @@
 }
 
 .podium-container-second {
-  width: 110px;
-  height: 125px;
+  width: 80px;
+  height: 105px;
   border: solid 3px silver;
   background-image: linear-gradient(180deg, #dad9da, #4d4d4d);
   border-radius: 10px;
@@ -75,12 +75,12 @@
 }
 
 .challenge-question-text-container {
-  margin-top: 8em;
+  margin-top: 7em;
 } 
 
 .podium-container-third {
-  width: 110px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: solid 3px rgb(163, 80, 2);
   background-image: linear-gradient(180deg, #6d2e17, #ee793b);
   border-radius: 10px;
@@ -94,7 +94,7 @@
 
 .text-podium {
   width: 100%;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   font-family: Roboto;
   font-weight: bold;
@@ -109,7 +109,7 @@
   color: white;
   width: 100%;
   text-align: center;
-  font-size: 85px;
+  font-size: 60px;
   font-weight: bold;
   margin: 0px;
 
@@ -123,5 +123,5 @@
 }
 
 .btn-next-container {
-  margin-top: -3em;
+  margin-top: -5em;
 }

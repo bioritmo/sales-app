@@ -59,7 +59,7 @@ const HealthEnergy = () => {
                 onChange={(value) => setEnergy(value)}
                 onUpdate={(value) => setEnergy(value)}
                 currentValue={energy}
-                height='30em'
+                height='23em'
                 isMin
               />
             </div>
@@ -73,7 +73,7 @@ const HealthEnergy = () => {
                 onChange={(value) => setPhysic(value)}
                 onUpdate={(value) => setPhysic(value)}
                 currentValue={physic}
-                height='30em'
+                height='23em'
                 isMin
               />
             </div>

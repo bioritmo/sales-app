@@ -18,9 +18,9 @@
 }
 
 .avatar-item {
-  width: 21em;
+  width: 16em;
   margin: -1em 0em;
-  min-width: 21em;
+  min-width: 16em;
 
   &.center {
     padding: 0 12em;
@@ -37,7 +37,7 @@
     }
 
     @media screen and (max-width: 768px) {
-      width: 50%;
+      width: 72%;
     }
   }
 

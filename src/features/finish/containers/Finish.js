@@ -43,7 +43,7 @@ const Finish = () => {
         </div>
         <NextButton label='Finalizar' delay={1900} onClick={() => setNextPage(true)} />
       </div>
-      <ProgressBar />  
+      {/* <ProgressBar />   */}
     </div>
   )
 }

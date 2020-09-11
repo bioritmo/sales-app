@@ -1,5 +1,10 @@
 @import '../../../../../shared/style/variables.scss';
 
+.response-container-modality {
+  margin-top: -3em;
+  margin-bottom: -2em;
+}
+
 .modality-container {
   @include background-gradient($bg-dark-purple, $bg-light-purple);
   width: 100%;

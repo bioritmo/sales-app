@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row-reverse;
   margin-bottom: 9em;
-  margin-top: -5em;
+  margin-top: -1em;
 }
 
 .response-item {
@@ -14,15 +14,15 @@
   &.img-left {
     margin-left: -1em;
     margin-top: 3em;
-    width: 21em;
+    width: 17em;
   }
 }
 
 .img-walking {
-  width: 21em;
-  margin-left: -3em;
+  width: 16em;
+  margin-left: -1em;
 }
 
 .action-imc {
-  margin-top: 12em;
+  margin-top: 11em;
 }

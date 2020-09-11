@@ -20,7 +20,7 @@ export default function ProgressBar() {
           <img src={progress === '99%' ? final_progress_m : progress_m} style={{
             left: progress === '99%' ? '90%' : progress,
             position: 'absolute',
-            bottom: 66,
+            bottom: 70,
             width: '2em',
             display: progress === '0%' && 'none'
           }} />
@@ -28,7 +28,7 @@ export default function ProgressBar() {
           <img src={progress === '99%' ? final_progress_f : progress_f} style={{
             left: progress === '99%' ? '90%' : progress,
             position: 'absolute',
-            bottom: 66,
+            bottom: 70,
             width: '2em',
             display: progress === '0%' && 'none'
           }} />
