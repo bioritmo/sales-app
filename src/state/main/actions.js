@@ -194,3 +194,40 @@ export const sendEmailFailure = () => ({
     isLoading: true
   }
 });
+
+export const saveQuestionnaire = () => ({
+  type: types.SAVE_QUESTIONNAIRE,
+  payload: {
+    message: {
+      show: false,
+      type: '',
+      msg: '',
+    },
+    isLoading: true,
+    messageIsLoading: 'Salvando dados, aguarde ...',
+  }
+});
+
+export const saveQuestionnaireSuccess = () => ({
+  type: types.SAVE_QUESTIONNAIRE_SUCCESS,
+  payload: {
+    message: {
+      show: false,
+      type: '',
+      msg: '',
+    },
+    isLoading: false
+  }
+});
+
+export const saveQuestionnaireFailure = () => ({
+  type: types.SAVE_QUESTIONNAIRE_FAILURE,
+  payload: {
+    message: {
+      show: true,
+      type: 'error',
+      msg: '',
+    },
+    isLoading: true
+  }
+});

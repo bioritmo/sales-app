@@ -17,3 +17,13 @@ export const apiBioRitmo = axios.create({
     'x-origin': 'game-sales',
   },
 });
+
+export const apiSales = axios.create({
+  baseURL: process.env.REACT_APP_API_SALES_URL,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'x-token': process.env.REACT_APP_TOKEN_API_BIO,
+    'x-origin': 'game-sales',
+  },
+});

@@ -6,9 +6,8 @@ import { push } from 'connected-react-router';
 import * as types from './constants';
 import * as actions from './actions';
 import { getAddress } from 'services/getAddress';
-import { normalizePersonToAPI } from 'shared/utils';
-import { apiBioRitmo } from 'services/apis';
-import { savePersonApi } from 'services/bioRitmo';
+import { normalizePersonToAPI, getStorageItem } from 'shared/utils';
+import { savePersonApi, createVisit, saveQuestions } from 'services/bioRitmo';
 import { sendEmail } from 'services/sendEmail';
 
 export function* workerStartGame() {
@@ -64,11 +63,36 @@ export function* workerSavePersonApi(action) {
   try {
     const response = yield call(savePersonApi, normalizePersonToAPI(data));
     yield put(actions.registerPersonSuccess(response.data));
+    yield call(workerCreateVisit, response.data)
     yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
     console.error(error);
     yield put(actions.registerPersonFailure({}));
     alert("Erro ao cadastrar, tente novamente.");
+  }
+}
+
+export function* workerCreateVisit(people) {
+  try {
+    yield call(createVisit, people.id);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function* workerSaveQuestions() {
+  try {
+    const people = getStorageItem('persona');
+    const bodyFormData = new FormData();
+    console.log(people)
+    bodyFormData.append('person[document_number]', people.document);
+    bodyFormData.append('person[document_kind]', 'cpf');
+    bodyFormData.append('person[questionnaire_response]', localStorage.getItem('@bioData'));
+
+    yield call(saveQuestions, bodyFormData);
+    yield put(actions.nextQuestion("/fim-de-jogo"));
+  } catch (error) {
+    console.error(error);
   }
 }
 
@@ -90,5 +114,6 @@ export default function* authSagas() {
     yield takeLatest(types.GET_ADDRESS, workerGetAddress),
     yield takeLatest(types.SAVE_PERSON_API, workerSavePersonApi),
     yield takeLatest(types.SEND_EMAIL, workerSendEmail),
+    yield takeLatest(types.SAVE_QUESTIONNAIRE, workerSaveQuestions),
   ]);
 }

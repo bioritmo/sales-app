@@ -231,6 +231,26 @@ export const listUnity = [
 		acronym: 'CDD',
 		description: 'Bradesco',
 	},
+	{
+		acronym: 'SCS',
+		description: 'São Caetano',
+	},
+	{
+		acronym: 'BEL',
+		description: 'Belém',
+	},
+	{
+		acronym: 'LIM',
+		description: 'Limeira',
+	},
+	{
+		acronym: 'PIR',
+		description: 'Piracicaba',
+	},
+	{
+		acronym: 'STS',
+		description: 'Santos',
+	},
 ];
 
 export const LIST_UNITY_SORTED = listUnity.sort((a,b) => (a.description > b.description) ? 1 : ((b.description > a.description) ? -1 : 0));

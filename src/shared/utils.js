@@ -1,5 +1,4 @@
 import { nameStorage } from './constants';
-import { CardText } from 'material-ui';
 
 export const getStorage = () => {
   const storage = localStorage.getItem(nameStorage);
@@ -187,9 +186,9 @@ export const normalizePersonToAPI = (data) => {
 			name: data.name,
 			gender: data.sex === 'sex-m' ? 'M' : 'F',
 			registry_number: data.document,
-			birthdate: "1990-01-01",
+			birthdate: normalizeDate(data.birthday),
 			email: data.email,
-			phone_number: data.mobile,
+			phone_number: onlyNumbers(data.mobile),
 			address_attributes: {
 				zip: data.address.cep,
 				street: data.address.logradouro,
@@ -224,4 +223,33 @@ export const translateMuscle = (muscles) => {
   });
 
   return translate;
+}
+
+export const maskDate = (value) => {
+  value = value.replace(/\D/g,"")
+  value = value.replace(/(\d{2})(\d)/,"$1/$2")
+  value = value.replace(/(\d{2})(\d)/,"$1/$2")
+
+  return value
+}
+
+export const maskMobile = (value) => {
+  value = value.replace(/\D/g,"")
+  value = value.replace(/^(\d\d)(\d)/g,"($1) $2")
+  value = value.replace(/(\d{5})(\d)/,"$1-$2")
+  
+  return value;
+}
+
+
+export const normalizeDate = (date) => {
+  const dateSplit = date.split('/');
+  const year = dateSplit[2];
+  const month = dateSplit[1].length === 1 ? `0${dateSplit[1]}` : dateSplit[1];
+  const day = dateSplit[0].length === 1 ? `0${dateSplit[0]}` : dateSplit[0];
+  return `${year}-${month}-${day}`;
+}
+
+export const onlyNumbers = (value) => {
+  return value.replace(/([^\d])+/gim, '');
 }

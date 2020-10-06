@@ -4,15 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
 // internal
 import * as actions from 'state/main/actions';
 import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
 import Question from '../../questions/components/question/Question';
 import NextButton from '../../questions/components/nextButton/NextButton';
-import { savePersona, isCPF, getStorageItem } from 'shared/utils';
+import { savePersona, isCPF, getStorageItem, maskDate, maskMobile } from 'shared/utils';
 //style
+import { LIST_UNITY_SORTED } from 'shared/constants';
 import './FinishRegister.scss';
-import { listUnity, LIST_UNITY_SORTED } from 'shared/constants';
 
 const FinishRegister = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const FinishRegister = () => {
   const messageIsLoading = useSelector(state => state.main.messageIsLoading);
 
   const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
   const [mobile, setMobile] = useState('');
   const [document, setDocument] = useState('');
   const [zipCode, setZipCode] = useState('');
@@ -42,6 +44,7 @@ const FinishRegister = () => {
           unity,
           address: fullAddress,
           address_number: number,
+          birthday,
         };
   
         if (isCPF(document)) {
@@ -61,6 +64,7 @@ const FinishRegister = () => {
   function onGetAddress() {
     dispatch(actions.getAddress(zipCode));
   }
+
 
   return (
     <div className="finish-container-register">
@@ -100,6 +104,22 @@ const FinishRegister = () => {
 
             <div className="complet-input-container">
               <div className="label-container">
+                <Question question="Data de Nascimento" /> 
+              </div>
+              <div className="input-container">
+                <input 
+                  className="input-text"
+                  type="tel"
+                  onChange={(e) => setBirthday(e.target.value)}
+                  value={maskDate(birthday)}
+                  maxLength={10}
+                  placeholder="DD/MM/AAAA"
+                />
+              </div>
+            </div>
+
+            <div className="complet-input-container">
+              <div className="label-container">
                 <Question question="Email" /> 
               </div>
               <div className="input-container">
@@ -121,9 +141,9 @@ const FinishRegister = () => {
                   className="input-text"
                   type="tel"
                   onChange={(e) => setMobile(e.target.value)}
-                  value={mobile}
-                  maxLength={11}
-                  placeholder="(DDD)XXXXX-XXXX"
+                  value={maskMobile(mobile)}
+                  maxLength={15}
+                  placeholder="(XX)XXXXX-XXXX"
                 />
               </div>
             </div>

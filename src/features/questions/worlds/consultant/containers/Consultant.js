@@ -41,6 +41,7 @@ const Consultant = ({ match }) => {
       local,
     });
     dispatch(actions.nextQuestion("/resultado-final/resultados"));
+    dispatch(actions.saveQuestionnaire());
   };
 
   function redirectConsultant() {
