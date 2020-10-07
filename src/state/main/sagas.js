@@ -84,7 +84,6 @@ export function* workerSaveQuestions() {
   try {
     const people = getStorageItem('persona');
     const bodyFormData = new FormData();
-    console.log(people)
     bodyFormData.append('person[document_number]', people.document);
     bodyFormData.append('person[document_kind]', 'cpf');
     bodyFormData.append('person[questionnaire_response]', localStorage.getItem('@bioData'));

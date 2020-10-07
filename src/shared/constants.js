@@ -132,10 +132,6 @@ export const listUnity = [
 		description: 'Continental',
 	},
 	{
-		acronym: 'CEN',
-		description: 'Centro',
-	},
-	{
 		acronym: 'WPZ',
 		description: 'West Plaza',
 	},
@@ -180,10 +176,6 @@ export const listUnity = [
 		description: 'Santander',
 	},
 	{
-		acronym: 'VKS',
-		description: 'Volkswagen',
-	},
-	{
 		acronym: 'CHA',
 		description: 'Chácara',
 	},
@@ -210,10 +202,6 @@ export const listUnity = [
 	{
 		acronym: 'BAR',
 		description: 'Shopping Metropolitano',
-	},
-	{
-		acronym: 'ST2',
-		description: 'Santander VSP',
 	},
 	{
 		acronym: 'MLV',
