@@ -5,7 +5,7 @@ import { Animated } from "react-animated-css";
 import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar, Effect } from 'ui';
+import { AlertMsg, Loader, Logo, ProgressBar, Effect, HomeButton } from 'ui';
 import Question from 'features/questions/components/question/Question';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import ImgEffects from 'features/questions/assets/imgs/effects_health.png';
@@ -36,6 +36,7 @@ const HealthPhysical = () => {
 
   return (
     <div className="health-container">
+      <HomeButton />
       <Effect img={ImgEffects} />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}

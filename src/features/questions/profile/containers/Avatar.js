@@ -5,7 +5,7 @@ import { Animated } from "react-animated-css";
 import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar, Effect } from 'ui';
+import { AlertMsg, Loader, Logo, ProgressBar, Effect, HomeButton } from 'ui';
 import { getStorageItem, saveResponseWorld, calculatePoints } from 'shared/utils';
 import Question from '../../components/question/Question';
 import NextButton from '../../components/nextButton/NextButton';
@@ -38,6 +38,7 @@ const Avatar = () => {
 
   return (
     <div className="avatar-container">
+      <HomeButton />
       <Effect img={ImgEffects} />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}

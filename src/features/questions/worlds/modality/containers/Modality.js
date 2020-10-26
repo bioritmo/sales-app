@@ -5,7 +5,7 @@ import { Animated } from "react-animated-css";
 import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar, Effect } from 'ui';
+import { AlertMsg, Loader, Logo, ProgressBar, Effect, HomeButton } from 'ui';
 import { saveResponseWorld, calculatePoints, getStorageItem } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import Question from 'features/questions/components/question/Question';
@@ -64,6 +64,7 @@ const Modality = () => {
 
   return (
     <div className="modality-container">
+      <HomeButton />
       <Effect img={ImgEffects} />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}

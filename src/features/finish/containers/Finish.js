@@ -6,7 +6,7 @@ import { Redirect } from 'react-router';
 import sgMail from '@sendgrid/mail';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { AlertMsg, HomeButton, Loader, Logo, ProgressBar } from 'ui';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import Question from 'features/questions/components/question/Question';
 import trophy from 'assets/imgs/trofeu.png';
@@ -28,6 +28,7 @@ const Finish = () => {
 
   return (
     <div className="finish-container">
+      <HomeButton />
       {nextPage ? <Redirect to="/consultor" /> : null}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}

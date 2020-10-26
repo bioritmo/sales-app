@@ -6,8 +6,8 @@ import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
 import { Link } from 'react-router-dom';
-import { AlertMsg, Loader, Logo, Effect } from 'ui';
-import { updateStorage, setDefaultStorage } from 'shared/utils';
+import { AlertMsg, Loader, Logo, Effect, HomeButton } from 'ui';
+import { setDefaultStorage } from 'shared/utils';
 import ImgEffects from 'assets/imgs/effects_start.png';
 import ImgStart from 'assets/imgs/img_start.gif';
 //style
@@ -21,10 +21,11 @@ const Main = () => {
   useEffect(() => {
     dispatch(actions.updateProgress('0%'));
     setDefaultStorage();
-  }, [])
+  }, []);
 
   return (
     <div className="container-main">
+      <HomeButton />
       <Effect img={ImgEffects} />
       <div className="start-options">
         <Logo />

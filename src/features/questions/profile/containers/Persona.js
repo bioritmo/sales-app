@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar, Effect } from 'ui';
+import { AlertMsg, Loader, Logo, ProgressBar, Effect, HomeButton } from 'ui';
 import { savePersona } from 'shared/utils';
 import Question from '../../components/question/Question';
 import NextButton from '../../components/nextButton/NextButton';
@@ -13,7 +13,6 @@ import MSymbol from '../../assets/imgs/m_symbol.png';
 import ImgEffects from '../../assets/imgs/effects.png';
 //style
 import './Persona.scss';
-import { Redirect } from 'react-router';
 
 const Persona = () => {
   const dispatch = useDispatch();
@@ -59,6 +58,7 @@ const Persona = () => {
 
   return (
     <div className="persona-container">
+      <HomeButton />
       <Effect img={ImgEffects} />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}

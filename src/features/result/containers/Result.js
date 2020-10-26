@@ -6,7 +6,7 @@ import Chart from 'chart.js';
 import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { AlertMsg, HomeButton, Loader, Logo, ProgressBar } from 'ui';
 import { getStorageItem, saveResponseWorld, translateMuscle } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import { WorldName } from 'features/questions/worlds/components/';
@@ -288,6 +288,7 @@ const Result = ({ match }) => {
   return (
     <div className="wrapper">
       <div id="result-container" className="result-container">
+        <HomeButton />
         { isLoading && ( <Loader /> )}
         { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
         <WorldName name="RESULTADO" />

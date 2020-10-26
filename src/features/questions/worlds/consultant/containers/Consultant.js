@@ -6,7 +6,7 @@ import { Animated } from "react-animated-css";
 import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { AlertMsg, HomeButton, Loader, Logo, ProgressBar } from 'ui';
 import { getStorageItem, saveResponseWorld, saveResponseConsultant } from 'shared/utils';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import { WorldName } from '../../components/';
@@ -65,6 +65,7 @@ const Consultant = ({ match }) => {
 
   return (
     <div className={!isConsultant ? 'consultant-container' : 'consultant-container questions'}>
+      <HomeButton />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="CONSULTOR" />

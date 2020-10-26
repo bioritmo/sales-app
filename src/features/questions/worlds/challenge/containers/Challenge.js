@@ -5,7 +5,7 @@ import { Animated } from "react-animated-css";
 import { Redirect } from 'react-router';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { AlertMsg, HomeButton, Loader, Logo, ProgressBar } from 'ui';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import Question from 'features/questions/components/question/Question';
 import { saveResponseWorld, calculatePoints } from 'shared/utils';
@@ -70,6 +70,7 @@ const Challenge = () => {
 
   return (
     <div className="challenge-container">
+      <HomeButton />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <WorldName name="MUNDO DESAFIOS" />

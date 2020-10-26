@@ -188,7 +188,7 @@ export const normalizePersonToAPI = (data) => {
 			registry_number: data.document,
 			birthdate: normalizeDate(data.birthday),
 			email: data.email,
-			phone_number: data.mobile,
+			mobile: data.mobile,
 			address_attributes: {
 				zip: data.address.cep,
 				street: data.address.logradouro,

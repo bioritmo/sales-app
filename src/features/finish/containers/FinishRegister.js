@@ -7,7 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { AlertMsg, HomeButton, Loader, Logo, ProgressBar } from 'ui';
 import Question from '../../questions/components/question/Question';
 import NextButton from '../../questions/components/nextButton/NextButton';
 import { savePersona, isCPF, getStorageItem, maskDate, maskMobile } from 'shared/utils';
@@ -68,6 +68,7 @@ const FinishRegister = () => {
 
   return (
     <div className="finish-container-register">
+      <HomeButton />
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
