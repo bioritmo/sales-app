@@ -21,6 +21,7 @@ const Consultant = ({ match }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.main.isLoading || false);
   const message = useSelector(state => state.main.message);
+  const person = useSelector(state => state.main.person);
   
   const [isConsultant, setIsConsultant] = useState(false);
   const [responsesList, setResponsesList] = useState([]);
@@ -32,7 +33,7 @@ const Consultant = ({ match }) => {
     if(urlParam) {
       setIsConsultant(true)
     } 
-  }, [])
+  }, []);
 
   function saveResponse() {
     saveResponseConsultant({
@@ -40,7 +41,7 @@ const Consultant = ({ match }) => {
       consultName: name,
       local,
     });
-    dispatch(actions.nextQuestion("/resultado-final/resultados"));
+    dispatch(actions.createVisit(person.id, name));
     dispatch(actions.saveQuestionnaire());
   };
 
@@ -81,7 +82,7 @@ const Consultant = ({ match }) => {
 
               <div className="input-container-name-consultant">
                 <div className="label-container">
-                  <Question question="Nome" /> 
+                  <Question question="Username consultor" /> 
                 </div>
                 <div className="input-container">
                   <input 

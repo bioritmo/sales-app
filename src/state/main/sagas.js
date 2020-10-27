@@ -63,7 +63,7 @@ export function* workerSavePersonApi(action) {
   try {
     const response = yield call(savePersonApi, normalizePersonToAPI(data));
     yield put(actions.registerPersonSuccess(response.data));
-    yield call(workerCreateVisit, response.data)
+    // yield call(workerCreateVisit, response.data)
     yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
     console.error(error);
@@ -72,10 +72,14 @@ export function* workerSavePersonApi(action) {
   }
 }
 
-export function* workerCreateVisit(people) {
+export function* workerCreateVisit(action) {
+  const { personId, name } = action.payload;
   try {
-    yield call(createVisit, people.id);
+    yield call(createVisit, personId, name);
+    yield put(actions.createVisitSuccess());
+    yield put(actions.nextQuestion("/resultado-final/resultados"));
   } catch (error) {
+    yield put(actions.createVisitFailure());
     console.error(error);
   }
 }
@@ -114,5 +118,6 @@ export default function* authSagas() {
     yield takeLatest(types.SAVE_PERSON_API, workerSavePersonApi),
     yield takeLatest(types.SEND_EMAIL, workerSendEmail),
     yield takeLatest(types.SAVE_QUESTIONNAIRE, workerSaveQuestions),
+    yield takeLatest(types.CREATE_VISIT, workerCreateVisit),
   ]);
 }

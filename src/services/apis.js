@@ -14,16 +14,14 @@ export const apiBioRitmo = axios.create({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'x-token': process.env.REACT_APP_TOKEN_API_BIO,
-    'x-origin': 'game-sales',
+    'x-origin': process.env.REACT_APP_ORIGIN_API_BIO,
   },
 });
 
 export const apiSales = axios.create({
   baseURL: process.env.REACT_APP_API_SALES_URL,
   headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'x-token': process.env.REACT_APP_TOKEN_API_BIO,
-    'x-origin': 'game-sales',
+    'x-token': process.env.REACT_APP_BIO_SALES_TOKEN,
+    'x-origin': process.env.REACT_APP_BIO_SALES_ORIGIN,
   },
 });

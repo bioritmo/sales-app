@@ -101,6 +101,27 @@ const mainReducer = (state = initialState, action) => {
         messageIsLoading: "",
         message: action.payload.message,
       };
+    case types.CREATE_VISIT:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        messageIsLoading: action.payload.messageIsLoading,
+        message: action.payload.message,
+      };
+    case types.CREATE_VISIT_SUCCESS:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        messageIsLoading: "",
+        message: action.payload.message,
+      };
+    case types.CREATE_VISIT_FAILURE:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+        messageIsLoading: "",
+        message: action.payload.message,
+      };
     default:
       return state;
   }

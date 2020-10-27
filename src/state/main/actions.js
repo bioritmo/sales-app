@@ -231,3 +231,42 @@ export const saveQuestionnaireFailure = () => ({
     isLoading: true
   }
 });
+
+export const createVisit = (personId, name) => ({
+  type: types.CREATE_VISIT,
+  payload: {
+    personId,
+    name,
+    message: {
+      show: false,
+      type: '',
+      msg: '',
+    },
+    isLoading: true,
+    messageIsLoading: 'Salvando dados, aguarde ...',
+  }
+});
+
+export const createVisitSuccess = () => ({
+  type: types.CREATE_VISIT_SUCCESS,
+  payload: {
+    message: {
+      show: false,
+      type: '',
+      msg: '',
+    },
+    isLoading: false
+  }
+});
+
+export const createVisitFailure = () => ({
+  type: types.CREATE_VISIT_FAILURE,
+  payload: {
+    message: {
+      show: true,
+      type: 'error',
+      msg: 'Erro ao criar visita.',
+    },
+    isLoading: false,
+  }
+});
