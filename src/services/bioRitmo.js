@@ -6,8 +6,4 @@ export const createVisit = (peopleId, name) => apiBioRitmo.post(`people/${people
   username: name
 });
 
-export const saveQuestions = (data) => apiSales.post(`people`, data, {
-  headers: {
-    'content-type': 'multipart/form-data'
-  }
-});
+export const saveQuestions = (data) => apiSales.post(`people`, data);

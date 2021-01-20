@@ -21,6 +21,8 @@ export const apiBioRitmo = axios.create({
 export const apiSales = axios.create({
   baseURL: process.env.REACT_APP_API_SALES_URL,
   headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
     'x-token': process.env.REACT_APP_BIO_SALES_TOKEN,
     'x-origin': process.env.REACT_APP_BIO_SALES_ORIGIN,
   },

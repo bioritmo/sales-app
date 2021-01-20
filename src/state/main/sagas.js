@@ -87,12 +87,15 @@ export function* workerCreateVisit(action) {
 export function* workerSaveQuestions() {
   try {
     const people = getStorageItem('persona');
-    const bodyFormData = new FormData();
-    bodyFormData.append('person[document_number]', people.document);
-    bodyFormData.append('person[document_kind]', 'cpf');
-    bodyFormData.append('person[questionnaire_response]', localStorage.getItem('@bioData'));
+    const data = {
+      person: {
+        document_number: people.document,
+        document_kind: 'cpf',
+        questionnaire_response: localStorage.getItem('@bioData')
+      }
+    }
 
-    yield call(saveQuestions, bodyFormData);
+    yield call(saveQuestions, data);
     yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
     console.error(error);
