@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { nameStorage } from './constants';
 
 export const getStorage = () => {
@@ -237,7 +238,7 @@ export const maskMobile = (value) => {
   value = value.replace(/\D/g,"")
   value = value.replace(/^(\d\d)(\d)/g,"($1) $2")
   value = value.replace(/(\d{5})(\d)/,"$1-$2")
-  
+
   return value;
 }
 
@@ -252,4 +253,23 @@ export const normalizeDate = (date) => {
 
 export const onlyNumbers = (value) => {
   return value.replace(/([^\d])+/gim, '');
+}
+
+export const messageErrorSaga = (error) => {
+  const messageErrorInternet = 'Sem conexão com a internet! Favor realizar a conexão para continuar o Game';
+  const messageErrorGeneric = 'Erro ao cadastrar, tente novamente.';
+  const messageError = !error.status ? messageErrorInternet : messageErrorGeneric;
+
+  toast.error(
+    messageError,
+    {
+      position: "top-center",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }
+  );
 }

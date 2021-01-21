@@ -29,6 +29,7 @@
     "react-router-redux": "4.0.8",
     "react-scripts": "3.3.0",
     "react-spinkit": "^3.0.0",
+    "react-toastify": "^6.2.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.2.6",
@@ -40,7 +41,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build-sw": "node ./src/sw-build.js",
+    "build": "react-scripts build && npm run build-sw",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -58,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "workbox-build": "^6.0.2"
   }
 }
