@@ -1,0 +1,29 @@
+.slider {
+  margin-top: 0px;
+}
+
+.label {
+  color: white;
+  font-size: 20px;
+  font-family: Roboto;
+  margin-top: -1em;
+  text-transform: uppercase;
+  width: 10em;
+  margin-left: -5em;
+}
+
+.currentValue {
+  color: white;
+  font-size: 45px;
+  font-family: Roboto;
+  padding-top: 11.5em;
+  margin-left: -2.5em;
+  text-transform: uppercase;
+  margin-left: -2em;
+  width: 5em;
+
+  &.min {
+    padding-top: 8.5em;
+    margin-left: -2.5em;
+  }
+}

@@ -1,17 +1,82 @@
+@import '../../../shared/style/variables.scss';
+
+.finish-container-register {
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+
 .form-container {
-  width: 55em;
+  width: 90%;
   margin: 5em auto;
 }
 
 .label-container {
-  margin: 1em 0 1em -3em;
+  margin: 1em 0 1em -2em;
+
+  &.flex {
+    margin: -1em;
+    width: 100%;
+  }
+
+  
 }
 
 .input-container {
-  width: 52em;
+  width: 90%;
   margin: 2em 0 0 0px;
+
+  &.flex {
+    margin-left: -16em;
+    width: 50%;
+  }
+
+  &.right {
+    margin-left: 1em;
+  }
+
+  &.select-input {
+    width: 97%;
+  }
 }
 
 .complet-input-container {
   margin-top: 4em;
+
+  &.flex {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.form-register {
+  width: 100%;
+  margin: 5em auto;
+}
+
+.input-text {
+  border: solid 2px #3d8bd0;
+  outline: none;
+  font-size: 35px;
+  padding: 20px;
+  background-color: transparent;
+  color: #a9a6a6;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.is-loading {
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+.select {
+  width: 40%;
+  height: auto;
+  font-size: 20px;
+  border: 1px solid #ddd;
 }

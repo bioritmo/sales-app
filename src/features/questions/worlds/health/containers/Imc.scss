@@ -1,14 +1,28 @@
-.response-container{
+.response-container {
   display: flex;
   flex-direction: row-reverse;
   margin-bottom: 9em;
+  margin-top: -1em;
 }
 
 .response-item {
   width: 100%;
   text-align: center;
+  margin-left: 0;
+  margin-left: -1em;
 
   &.img-left {
-    margin-left: -2em;
+    margin-left: -1em;
+    margin-top: 3em;
+    width: 17em;
   }
+}
+
+.img-walking {
+  width: 16em;
+  margin-left: -1em;
+}
+
+.action-imc {
+  margin-top: 8.5em;
 }

@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from "react-animated-css";
+import { Redirect } from 'react-router';
+import sgMail from '@sendgrid/mail';
 // internal
 import * as actions from 'state/main/actions';
-import { AlertMsg, Loader, Logo, ProgressBar } from 'ui';
+import { AlertMsg, HomeButton, Loader, Logo, ProgressBar } from 'ui';
 import NextButton from 'features/questions/components/nextButton/NextButton';
 import Question from 'features/questions/components/question/Question';
 import trophy from 'assets/imgs/trofeu.png';
@@ -18,6 +20,7 @@ const Finish = () => {
   const message = useSelector(state => state.main.message);
 
   const [name, setName] = useState('');
+  const [nextPage, setNextPage] = useState(false);
 
   useEffect(() => {
     setName(getStorageItem('persona')['name']);
@@ -25,6 +28,8 @@ const Finish = () => {
 
   return (
     <div className="finish-container">
+      <HomeButton />
+      {nextPage ? <Redirect to="/consultor" /> : null}
       { isLoading && ( <Loader /> )}
       { message.show && ( <AlertMsg show kind={message.type} message={message.msg}/> )}
       <Logo />
@@ -37,9 +42,9 @@ const Finish = () => {
             <Question question={`Pronto, ${name.toUpperCase()}!\n Suas respostas serão utilizadas para selecionarmos as melhores salas, treinos e opções para você e seus objetivos!`} />
           </Animated>
         </div>
-        <NextButton label='Finalizar' delay={1900} onClick={() => dispatch(actions.nextQuestion('/'))} />
+        <NextButton label='Finalizar' delay={1900} onClick={() => setNextPage(true)} />
       </div>
-      <ProgressBar />  
+      {/* <ProgressBar />   */}
     </div>
   )
 }

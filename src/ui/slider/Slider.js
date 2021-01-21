@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
 
+//style
+import './Slider.scss';
+
 const railOuterStyle = {
   position: 'absolute',
   height: '100%',
@@ -122,10 +125,10 @@ function Tick({ tick }) {
 }
 
 
-export const InputSlider = ({ domain, onChange, label, currentValue, onUpdate}) => {
+export const InputSlider = ({ domain, onChange, label, currentValue, onUpdate, height = '45em', isMin }) => {
   const sliderStyle = {
     position: 'relative',
-    height: '45em',
+    height: height,
     marginLeft: '45%',
     touchAction: 'none',
   }
@@ -135,61 +138,60 @@ export const InputSlider = ({ domain, onChange, label, currentValue, onUpdate}) 
   const [ values, setValues ] = useState(defaultValues.slice());
 
   return (
-    <div>
-      <p Style="color: white;font-size: 25px;font-family: Roboto;margin-top: -1em; text-transform: uppercase;">{label}</p>
+    <div className="slider">
       <Slider
-          vertical
-          mode={1}
-          step={1}
-          domain={domain}
-          rootStyle={sliderStyle}
-          onChange={onChange}
-          onUpdate={onUpdate}
-          values={values}
-        >
-          <Rail>
-            {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
-          </Rail>
-          <Handles>
-              {({ handles, getHandleProps }) => (
-                <div>
-                  {handles.map(handle => (
-                    <Handle
-                      key={handle.id}
-                      handle={handle}
-                      domain={domain}
-                      getHandleProps={getHandleProps}
-                    />
-                  ))}
-                </div>
-              )}
-            </Handles>
-          <Tracks right={false}>
-              {({ tracks, getTrackProps }) => (
-                <div>
-                  {tracks.map(({ id, source, target }) => (
-                    <Track
-                      key={id}
-                      source={source}
-                      target={target}
-                      getTrackProps={getTrackProps}
-                    />
-                  ))}
-                </div>
-              )}
-            </Tracks>
-          <Ticks count={10}>
-            {({ ticks }) => (
-              <div className="slider-ticks">
-                {ticks.map(tick => (
-                  <Tick key={tick.id} tick={tick} />
+        vertical
+        mode={1}
+        step={1}
+        domain={domain}
+        rootStyle={sliderStyle}
+        onChange={onChange}
+        onUpdate={onUpdate}
+        values={values}
+      >
+        <Rail>
+          {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
+        </Rail>
+        <Handles>
+            {({ handles, getHandleProps }) => (
+              <div>
+                {handles.map(handle => (
+                  <Handle
+                    key={handle.id}
+                    handle={handle}
+                    domain={domain}
+                    getHandleProps={getHandleProps}
+                  />
                 ))}
               </div>
             )}
-          </Ticks>
-          <p Style="color: white;font-size: 45px;font-family: Roboto;padding-top: 17em; margin-left: -3em; text-transform: uppercase;margin-left: -2em;
-    width: 5em;">{currentValue}</p>
-        </Slider>
+          </Handles>
+        <Tracks right={false}>
+            {({ tracks, getTrackProps }) => (
+              <div>
+                {tracks.map(({ id, source, target }) => (
+                  <Track
+                    key={id}
+                    source={source}
+                    target={target}
+                    getTrackProps={getTrackProps}
+                  />
+                ))}
+              </div>
+            )}
+          </Tracks>
+        <Ticks count={10}>
+          {({ ticks }) => (
+            <div className="slider-ticks">
+              {ticks.map(tick => (
+                <Tick key={tick.id} tick={tick} />
+              ))}
+            </div>
+          )}
+        </Ticks>
+        <p className={isMin ? 'currentValue min' : 'currentValue'}>{currentValue}</p>
+        <p className="label">{label}</p>
+      </Slider>
     </div>
   )
 }

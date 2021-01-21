@@ -5,9 +5,11 @@
   width: 100%;
   height: 100%;
   position: absolute;
+  font-size: 20px !important;
+  overflow-y: auto;
 }
 
 .trophy {
-  width: 48em;
+  width: 70%;
   margin-bottom: 3em;
 }

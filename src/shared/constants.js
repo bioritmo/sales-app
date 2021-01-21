@@ -117,3 +117,128 @@ const questions = {
 		}
 	]
 }
+
+export const listUnity = [
+	{
+		acronym: 'PTA',
+		description: 'Paulista',
+	},
+	{
+		acronym: 'MOR',
+		description: 'Morumbi',
+	},
+	{
+		acronym: 'CON',
+		description: 'Continental',
+	},
+	{
+		acronym: 'WPZ',
+		description: 'West Plaza',
+	},
+	{
+		acronym: 'TAM',
+		description: 'Tamboré',
+	},
+	{
+		acronym: 'CEI',
+		description: 'Itaú CE',
+	},
+	{
+		acronym: 'CTO',
+		description: 'Itaú CT',
+	},
+	{
+		acronym: 'HIG',
+		description: 'Higienópolis',
+	},
+	{
+		acronym: 'CBE',
+		description: 'Campo Belo',
+	},
+	{
+		acronym: 'CCO',
+		description: 'Cerro Corá',
+	},
+	{
+		acronym: 'SAD',
+		description: 'Santo André',
+	},
+	{
+		acronym: 'SAN',
+		description: 'Santana',
+	},
+	{
+		acronym: 'CAT',
+		description: 'Itaú CAT',
+	},
+	{
+		acronym: 'STD',
+		description: 'Santander',
+	},
+	{
+		acronym: 'CHA',
+		description: 'Chácara',
+	},
+	{
+		acronym: 'SNU',
+		description: 'Nações Unidas',
+	},
+	{
+		acronym: 'MOE',
+		description: 'Moema',
+	},
+	{
+		acronym: 'ITA',
+		description: 'Itaim',
+	},
+	{
+		acronym: 'POR',
+		description: 'Porto Seguro',
+	},
+	{
+		acronym: 'ST3',
+		description: 'Santander Radar',
+	},
+	{
+		acronym: 'BAR',
+		description: 'Shopping Metropolitano',
+	},
+	{
+		acronym: 'MLV',
+		description: 'Mercado Livre',
+	},
+	{
+		acronym: 'MTW',
+		description: 'Morumbi Town',
+	},
+	{
+		acronym: 'PEP',
+		description: 'Pepê',
+	},
+	{
+		acronym: 'CDD',
+		description: 'Bradesco',
+	},
+	{
+		acronym: 'SCS',
+		description: 'São Caetano',
+	},
+	{
+		acronym: 'BEL',
+		description: 'Belém',
+	},
+	{
+		acronym: 'LIM',
+		description: 'Limeira',
+	},
+	{
+		acronym: 'PIR',
+		description: 'Piracicaba',
+	},
+	{
+		acronym: 'STS',
+		description: 'Santos',
+	},
+];
+
+export const LIST_UNITY_SORTED = listUnity.sort((a,b) => (a.description > b.description) ? 1 : ((b.description > a.description) ? -1 : 0));

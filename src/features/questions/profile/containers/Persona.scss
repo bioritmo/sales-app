@@ -1,14 +1,15 @@
 @import "../../../../shared/style/variables.scss";
 
 .persona-container {
-  @include background-gradient($bg-dark-blue, $bg-light-blue);
+  @include background-gradient($bg-dark-yellow, $bg-light-yellow);
   width: 100%;
   height: 100%;
   position: absolute;
+  overflow-y:scroll;
 }
 
 .input-name {
-  border: solid 2px #3d8bd0;
+  border: solid 2px #bf9604;
   outline: none;
   font-size: 35px;
   padding: 20px;
@@ -32,7 +33,7 @@
 }
 
 .sex-item {
-  padding: 2em;
+  padding: 1em;
   cursor: pointer;
 
   > .active {
@@ -42,8 +43,8 @@
 }
 
 .sex-item-active {
-  border: solid 5px #3d8bd0;
-  padding: 2em;
+  border: solid 5px #bf9604;
+  padding: 1em;
   border-radius: 10px;
   cursor: pointer;  
 }
@@ -54,10 +55,10 @@
 }
 
 .name-avatar {
-  width: 100%;
-  margin-top: 12em;
+  width: 90%;
+  margin: 12em auto;
 }
 
 .sex-img {
-  width: 25em;
+  width: 14em;
 }

@@ -1,5 +1,10 @@
 @import '../../../../../shared/style/variables.scss';
 
+.response-container-modality {
+  margin-top: -3em;
+  margin-bottom: -2em;
+}
+
 .modality-container {
   @include background-gradient($bg-dark-purple, $bg-light-purple);
   width: 100%;
@@ -12,6 +17,6 @@
   display: grid;
   grid-template-columns: 0fr 0fr 0fr 0fr;
   margin: 0 auto;
-  width: 60em;
+  justify-content: center;
   margin-top: 5em;
 }

@@ -1,8 +1,9 @@
 .question-text {
   font-family: 'Roboto';
-  font-size: 35px;
+  font-size: 24px;
   color: white;
   margin: 5px 0px 0px 20px;
+  width: 90%;
 }
 
 .question-container {
@@ -14,5 +15,4 @@
 .pipe-question {
   height: auto;
   width: 2px;
-  background-color: #3d8bd0;
 }

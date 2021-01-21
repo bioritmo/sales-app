@@ -1,0 +1,91 @@
+@import '../../../shared/style/variables.scss';
+
+body {
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
+}
+
+.wrapper {
+  font-family: Roboto;
+  padding: 20px;
+}
+
+.result-container {
+  @include background-gradient($bg-dark-blue, $bg-light-blue);
+  width: 100%;
+  height: auto;
+  position: absolute;
+  
+
+  @media print {
+    @include background-gradient($bg-dark-blue, $bg-light-blue);
+    -webkit-print-color-adjust: exact;  
+  } 
+}
+
+.charts-container {
+  width: 550px;
+  margin: 6em auto;
+}
+
+.response-result-container {
+  display: flex;
+  margin: 0px 0px 3em 0px;
+  font-family: Roboto;
+  color: #CCC
+}
+
+.title-question-result {
+  margin: 30px 0px 5px 0px;
+  font-size: 21px;
+  font-family: Roboto;
+}
+
+.response-question-result {
+  font-size: 21px;
+  color: white;
+  margin: 10px 0px;
+  text-transform: uppercase;
+  font-family: Roboto;
+
+  &.number {
+    font-size: 40px;
+  }
+}
+
+.responses-user-container {
+  margin: 0px;
+  width: 70%;
+}
+
+.imc-container {
+  text-align: center;
+  padding: 20px;
+  margin-left: -11%;
+}
+
+.title-charts {
+  color: white;
+  font-size: 24px;
+  margin-left: 1%;
+  font-family: Roboto;
+  text-transform: uppercase;
+}
+
+.chart-content {
+  margin-top: -1em;
+  margin-bottom: 5em;
+}
+
+.annotations {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.description-fitness {
+  color: white;
+  font-size: 18px;
+}
+
+.description-fitness-container {
+  margin: 30px;
+}
