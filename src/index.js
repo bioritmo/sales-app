@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { PersistGate } from 'redux-persist/integration/react';
 import WebfontLoader from '@dr-kobros/react-webfont-loader';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 
 // Internal
 import Root from './routes/Root';

@@ -6,7 +6,7 @@ import { push } from 'connected-react-router';
 import * as types from './constants';
 import * as actions from './actions';
 import { getAddress } from 'services/getAddress';
-import { normalizePersonToAPI, getStorageItem } from 'shared/utils';
+import { normalizePersonToAPI, getStorageItem, messageErrorSaga } from 'shared/utils';
 import { savePersonApi, createVisit, saveQuestions } from 'services/bioRitmo';
 import { sendEmail } from 'services/sendEmail';
 
@@ -43,7 +43,7 @@ export function* workerGetAddress(action) {
     const address = yield call(getAddress, zipCode);
     yield put(actions.getAddressSuccess(address.data));
   } catch (error) {
-    console.error(error);
+    messageErrorSaga(error);
     yield put(actions.getAddressFailure({
       bairro: "",
       cep: "",
@@ -66,9 +66,8 @@ export function* workerSavePersonApi(action) {
     // yield call(workerCreateVisit, response.data)
     yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
-    console.error(error);
     yield put(actions.registerPersonFailure({}));
-    alert("Erro ao cadastrar, tente novamente.");
+    messageErrorSaga(error);
   }
 }
 
@@ -80,7 +79,7 @@ export function* workerCreateVisit(action) {
     yield put(actions.nextQuestion("/resultado-final/resultados"));
   } catch (error) {
     yield put(actions.createVisitFailure());
-    console.error(error);
+    messageErrorSaga(error);
   }
 }
 
@@ -98,7 +97,7 @@ export function* workerSaveQuestions() {
     yield call(saveQuestions, data);
     yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
-    console.error(error);
+    messageErrorSaga(error);
   }
 }
 
@@ -107,8 +106,8 @@ export function* workerSendEmail(action) {
   try {
     yield call(sendEmail, data);
   } catch (error) {
-    console.error(error);
     yield put(actions.sendEmailFailure({}));
+    messageErrorSaga(error);
   }
 }
 
