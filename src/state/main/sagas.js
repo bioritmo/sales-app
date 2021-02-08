@@ -95,7 +95,6 @@ export function* workerSaveQuestions() {
     }
 
     yield call(saveQuestions, data);
-    yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
     messageErrorSaga(error);
   }
