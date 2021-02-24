@@ -35,10 +35,11 @@ const Modality = () => {
     dispatch(actions.nextQuestion("/desafios"));
   };
 
-  function onSelectItem(title, points) {
-    const item = selectedItems.find(i => i === title);
+  function onSelectItem(response) {
+    const { id, title, points } = response;
+    const item = selectedItems.find(i => i === id);
     if (!item && selectedQtdItems < 3) {
-      setSelectedItems([...selectedItems, title]);
+      setSelectedItems([...selectedItems, id]);
       setSelectedQtdItems(selectedQtdItems + 1);
 
       setOperation('sum');
@@ -48,7 +49,7 @@ const Modality = () => {
     } else if (selectedQtdItems === 3 && !item)  {
       alert("Escolha apenas 3 opções.")
     } else {
-      setSelectedItems(selectedItems.filter(i => i !== title));
+      setSelectedItems(selectedItems.filter(i => i !== id));
       setSelectedQtdItems(selectedQtdItems - 1);
       setOperation('sub');
     }
@@ -78,21 +79,21 @@ const Modality = () => {
               MODALITY_QUESTIONS.questions[0].responses.map((response, index) => (
                 <Animated animationInDelay={(index + 1) * 250} animationInDuration={1000} animationIn="rotateIn" isVisible={true}>
                   <CardSelectModality
-                    img={response.img(getStorageItem('persona')['sex'], selectedItems.find(i => i === response.title))}
+                    img={response.img(getStorageItem('persona')['sex'], selectedItems.find(i => i === response.id))}
                     text={response.title}
-                    onSelectItem={() => onSelectItem(response.title, response.points)}
-                    isSelected={selectedItems.find(i => i === response.title)}
+                    onSelectItem={() => onSelectItem(response)}
+                    isSelected={selectedItems.find(i => i === response.id)}
                   />
                 </Animated>
               ))
-            }    
+            }
           </div>
         </div>
         {
           selectedQtdItems === 3 && (
             <NextButton onClick={() => saveResponse()} />
           )
-        }  
+        }
       </div>
       <ProgressBar />
     </div>

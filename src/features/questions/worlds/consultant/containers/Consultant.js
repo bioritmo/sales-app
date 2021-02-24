@@ -22,7 +22,7 @@ const Consultant = ({ match }) => {
   const isLoading = useSelector(state => state.main.isLoading || false);
   const message = useSelector(state => state.main.message);
   const person = useSelector(state => state.main.person);
-  
+
   const [isConsultant, setIsConsultant] = useState(false);
   const [responsesList, setResponsesList] = useState([]);
   const [name, setName] = useState("");
@@ -32,7 +32,7 @@ const Consultant = ({ match }) => {
   useEffect(() => {
     if(urlParam) {
       setIsConsultant(true)
-    } 
+    }
   }, []);
 
   function saveResponse() {
@@ -49,16 +49,18 @@ const Consultant = ({ match }) => {
     dispatch(actions.nextQuestion("/resultado-final/consultor"));
   }
 
-  function onSelectResponse(question, response) {
-    const item = responsesList.find(i => i.question === question);
+  function onSelectResponse(currentQuestion, response) {
+    const item = responsesList.find(i => i.id === currentQuestion.id);
     if (!item) {
       setResponsesList([...responsesList, {
-        question,
+        id: currentQuestion.id,
+        question: currentQuestion.question,
         response
       }]);
     } else {
-      setResponsesList([...responsesList.filter(i => i.question !== question), {
-        question,
+      setResponsesList([...responsesList.filter(i => i.id !== currentQuestion.id), {
+        id: currentQuestion.id,
+        question: currentQuestion.question,
         response
       }]);
     }
@@ -82,10 +84,10 @@ const Consultant = ({ match }) => {
 
               <div className="input-container-name-consultant">
                 <div className="label-container">
-                  <Question question="Username consultor" /> 
+                  <Question question="Username consultor" />
                 </div>
                 <div className="input-container">
-                  <input 
+                  <input
                     className="input-text"
                     type="text"
                     onChange={(e) => setName(e.target.value)}
@@ -93,22 +95,22 @@ const Consultant = ({ match }) => {
                   />
                 </div>
               </div>
-              
+
               {
                 CONSULT_QUESTIONS.questions.map(currentQuestions => (
                   <ResponseCardWrapper question={currentQuestions.question}>
                     {
                       currentQuestions.responses.map((response, index) => (
                         <Animated animationInDelay={(index + 1) * 150} animationInDuration={1000} animationIn="zoomIn" isVisible={true}>
-                          <CardResponse 
+                          <CardResponse
                             text={response.text}
-                            onClick={() => onSelectResponse(currentQuestions.question, response.text)}
+                            onClick={() => onSelectResponse(currentQuestions, response.text)}
                             selected={responsesList.find(i => i.response === response.text)}
                           />
                         </Animated>
-                        
+
                       ))
-                    } 
+                    }
                   </ResponseCardWrapper>
                 ))
               }

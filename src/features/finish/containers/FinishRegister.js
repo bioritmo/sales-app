@@ -33,7 +33,7 @@ const FinishRegister = () => {
   function onInsertPerson() {
     dispatch(actions.registerPerson(getStorageItem('persona')))
   }
-  
+
   function onSavePersona() {
     if (email !== '' && mobile !== '' && document !== ''){
       if (fullAddress.cep !== '') {
@@ -46,7 +46,7 @@ const FinishRegister = () => {
           address_number: number,
           birthday,
         };
-  
+
         if (isCPF(document)) {
           savePersona(persona);
           onInsertPerson();
@@ -74,12 +74,12 @@ const FinishRegister = () => {
       <Logo />
       <div className="form-register">
         <Question question="Estamos quase finalizando, só precisamos dos seus dados de contato." />
-        
+
         <div className="form-container">
           <Animated animationInDelay="500" animationInDuration={1000} animationIn="fadeIn" isVisible={true}>
             <div className="complet-input-container">
               <div className="label-container">
-                <Question question="Unidade" /> 
+                <Question question="Unidade" />
               </div>
               <div className="input-container select-input">
                 <SelectField
@@ -105,10 +105,10 @@ const FinishRegister = () => {
 
             <div className="complet-input-container">
               <div className="label-container">
-                <Question question="Data de Nascimento" /> 
+                <Question question="Data de Nascimento" />
               </div>
               <div className="input-container">
-                <input 
+                <input
                   className="input-text"
                   type="tel"
                   onChange={(e) => setBirthday(e.target.value)}
@@ -121,10 +121,10 @@ const FinishRegister = () => {
 
             <div className="complet-input-container">
               <div className="label-container">
-                <Question question="Email" /> 
+                <Question question="Email" />
               </div>
               <div className="input-container">
-                <input 
+                <input
                   className="input-text"
                   type="text"
                   onChange={(e) => setEmail(e.target.value)}
@@ -135,10 +135,10 @@ const FinishRegister = () => {
 
             <div className="complet-input-container">
               <div className="label-container">
-                <Question question="Telefone/Celular" /> 
+                <Question question="Telefone/Celular" />
               </div>
               <div className="input-container">
-                <input 
+                <input
                   className="input-text"
                   type="tel"
                   onChange={(e) => setMobile(e.target.value)}
@@ -154,7 +154,7 @@ const FinishRegister = () => {
                 <Question question="CPF" />
               </div>
               <div className="input-container">
-                <input 
+                <input
                   className="input-text"
                   type="tel"
                   onChange={(e) => setDocument(e.target.value)}
@@ -169,7 +169,7 @@ const FinishRegister = () => {
                 <Question question="CEP" />
               </div>
               <div className="input-container">
-                <input 
+                <input
                   className="input-text"
                   type="tel"
                   onChange={(e) => setZipCode(e.target.value)}
@@ -185,7 +185,7 @@ const FinishRegister = () => {
                 <Question question="Número" />
               </div>
               <div className="input-container">
-                <input 
+                <input
                   className="input-text"
                   type="tel"
                   onChange={(e) => setNumber(e.target.value)}

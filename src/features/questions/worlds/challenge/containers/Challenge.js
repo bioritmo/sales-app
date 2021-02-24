@@ -24,6 +24,7 @@ const Challenge = () => {
   const [currentItemText, setCurrentItemText] = useState('');
   const [currentItemPoints, setCurrentItemPoints] = useState('');
   const [operation, setOperation] = useState('');
+  const responses =  CHALLENGE_QUESTIONS.questions[0].responses;
 
   function saveResponse() {
     saveResponseWorld('challenge', {
@@ -34,7 +35,8 @@ const Challenge = () => {
   };
 
   function findIndexItem(item){
-    return selectedItems.findIndex(x => x === item);
+    const response = responses.find(r => r.title === item);
+    return selectedItems.findIndex(x => x === response.id);
   }
 
   useEffect(() => {
@@ -48,21 +50,22 @@ const Challenge = () => {
       if (index === 1 ) return calculatePoints(currentItemPoints, false, 1.25);
       if (index === 2 ) return calculatePoints(currentItemPoints, false, 1.00);
     }
-    
+
   }, [selectedItems, currentItemText, currentItemPoints]);
 
-  function onSelectItem(index, text, points) {
-    const item = selectedItems.find(i => i === text);
+  function onSelectItem(response) {
+    const { id, title, points } = response;
+    const item = selectedItems.find(i => i === id);
     if (!item && selectedQtdItems < 3) {
-      setSelectedItems([...selectedItems, text]);
+      setSelectedItems([...selectedItems, id]);
       setSelectedQtdItems(selectedQtdItems + 1);
       setOperation('sum');
-      setCurrentItemText(text);
+      setCurrentItemText(title);
       setCurrentItemPoints(points);
     } else if (selectedQtdItems === 3 && !item)  {
       alert("Escolha apenas 3 opções.")
     } else {
-      setSelectedItems(selectedItems.filter(i => i !== text));
+      setSelectedItems(selectedItems.filter(i => i !== id));
       setSelectedQtdItems(selectedQtdItems - 1);
       setOperation('sub');
     }
@@ -83,15 +86,15 @@ const Challenge = () => {
             {
               CHALLENGE_QUESTIONS.questions[0].responses.map((response, index) => (
                 <Animated key={index} animationInDelay={(index + 1) * 250} animationInDuration={1000} animationIn="fadeInLeft" isVisible={true}>
-                  <p 
-                    className={!selectedItems.find(i => i === response.title) ? "text-card-challenge" : "text-card-challenge selected"}
-                    onClick={() => onSelectItem(index, response.title, response.points)}
+                  <p
+                    className={!selectedItems.find(i => i === response.id) ? "text-card-challenge" : "text-card-challenge selected"}
+                    onClick={() => onSelectItem(response)}
                   >
                     {response.title}
                   </p>
                 </Animated>
               ))
-            }  
+            }
           </div>
 
           <div className="results-response-challenge">
@@ -101,7 +104,7 @@ const Challenge = () => {
                   <div className="podium-container">
                     <p className="index-podium second">2º</p>
                     <div className="podium-container-second">
-                      <p className="text-podium">{selectedItems[1]}</p>
+                      <p className="text-podium">{responses.find(r => r.id === selectedItems[1]).title}</p>
                     </div>
                   </div>
                 </Animated>
@@ -113,7 +116,7 @@ const Challenge = () => {
                   <div className="podium-container">
                     <p className="index-podium">1º</p>
                     <div className="podium-container-first">
-                    <p className="text-podium">{selectedItems[0]}</p>
+                    <p className="text-podium">{responses.find(r => r.id === selectedItems[0]).title}</p>
                     </div>
                   </div>
                 </Animated>
@@ -125,7 +128,7 @@ const Challenge = () => {
                   <div className="podium-container">
                     <p className="index-podium third">3º</p>
                     <div className="podium-container-third">
-                      <p className="text-podium">{selectedItems[2]}</p>
+                      <p className="text-podium">{responses.find(r => r.id === selectedItems[2]).title}</p>
                     </div>
                   </div>
                 </Animated>

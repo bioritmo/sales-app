@@ -33,10 +33,10 @@ import alongar_f from 'assets/imgs/alongar_f.png';
 import alongar_animation_f from 'assets/imgs/alongar_f.gif';
 
 export const MODALITY_QUESTIONS = {
-  "questions": 
+  "questions":
     [
       {
-        "id": 1,
+        "id": 406,
         "category": "modality",
         "question": "Destas opções, quais as 3 que você mais gosta?",
         "question_legend": "Modalidades que mais gosta",
@@ -44,7 +44,7 @@ export const MODALITY_QUESTIONS = {
         "max_check": 3,
 			  "responses": [
           {
-            id: 1,
+            id: 1522,
             "title": "musculação",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? musculacao_m : musculacao_f) :
@@ -64,7 +64,7 @@ export const MODALITY_QUESTIONS = {
             ],
           },
           {
-            id: 2,
+            id: 1523,
             "title": "correr",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? correr_m : correr_f) :
@@ -84,7 +84,7 @@ export const MODALITY_QUESTIONS = {
             ],
           },
           {
-            id: 3,
+            id: 1524,
             "title": "pedalar",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? pedalar_m : pedalar_f) :
@@ -104,9 +104,9 @@ export const MODALITY_QUESTIONS = {
             ],
           },
           {
-            id: 4,
+            id: 1525,
             "title": "nadar",
-            "img": (sex, isAnimation) => !isAnimation ? 
+            "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? nadar_m : nadar_f) :
               (sex === 'sex-m' ? nadar_animation_m : nadar_animation_f),
             points: [
@@ -124,7 +124,7 @@ export const MODALITY_QUESTIONS = {
             ],
           },
           {
-            id: 5,
+            id: 1526,
             "title": "funcional",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? funcional_m : funcional_f) :
@@ -144,7 +144,7 @@ export const MODALITY_QUESTIONS = {
             ],
           },
           {
-            id: 6,
+            id: 1527,
             "title": "yoga",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? yoga_m : yoga_f) :
@@ -164,9 +164,9 @@ export const MODALITY_QUESTIONS = {
             ],
           },
           {
-            id: 7,
+            id: 1528,
             "title": "dançar",
-            "img": (sex, isAnimation) => !isAnimation ? 
+            "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? dancar_m : dancar_f) :
               (sex === 'sex-m' ? dancar_animation_m : dancar_animation_f),
             points: [
@@ -184,10 +184,10 @@ export const MODALITY_QUESTIONS = {
             ],
           },
           {
-            id: 8,
+            id: 1529,
             "title": "alongar",
-            "img": (sex, isAnimation) => !isAnimation ? 
-              (sex === 'sex-m' ? alongar_m : alongar_f) : 
+            "img": (sex, isAnimation) => !isAnimation ?
+              (sex === 'sex-m' ? alongar_m : alongar_f) :
               (sex === 'sex-m' ? alongar_animation_m : alongar_animation_f),
             points: [
               {

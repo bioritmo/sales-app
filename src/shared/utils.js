@@ -1,5 +1,8 @@
 import { toast } from 'react-toastify';
+import _ from 'lodash';
+
 import { nameStorage } from './constants';
+import { MUSCLE_QUESTIONS } from '../features/questions/worlds/muscle/questions';
 
 export const getStorage = () => {
   const storage = localStorage.getItem(nameStorage);
@@ -159,6 +162,25 @@ export const saveResponseConsultant = (data) => {
   updateStorage(storage);
 }
 
+export const splitPhone = (strPhone) => {
+  const phone = strPhone.replace(/\D/g, '');
+  let areaCode, number, kind;
+  if (phone.length === 10) {
+    kind = 'home';
+    areaCode = phone.substr(0, 2);
+    number = phone.substr(2, 8);
+  } else if (phone.length === 11) {
+    kind = 'mobile';
+    areaCode = phone.substr(0, 2);
+    number = phone.substr(2, 9);
+  } else {
+    // Formato não suportado
+    console.log('erro formato telefone.');
+  }
+
+  return { areaCode, number, kind };
+}
+
 export const isCPF = (strCPF) => {
   let Sum;
   var Rest;
@@ -180,6 +202,8 @@ export const isCPF = (strCPF) => {
   if (Rest != parseInt(strCPF.substring(10, 11) ) ) return false;
   return true;
 }
+
+export const extractIdUrl = (url) => url.substring(url.lastIndexOf('/') + 1);
 
 export const normalizePersonToAPI = (data) => {
   return {
@@ -205,9 +229,86 @@ export const normalizePersonToAPI = (data) => {
   }
 }
 
+export const normalizePayloadPersonWorkout = (data) => {
+  const { areaCode, number, kind } = splitPhone(data.mobile);
+  return {
+    person: {
+      name: data.name,
+      email: data.email,
+      registry_number: data.registry_number,
+      integration_id: data.integration_id,
+      birthday: data.birthdate,
+      origin: 'biosystem',
+      location_acronym: data.location_acronym,
+      phones_attributes: [
+        {
+          area: areaCode,
+          number: number,
+          kind: kind
+        }
+      ]
+    }
+  }
+}
+
+export const normalizePayloadQuestionnaireWorkout = (data) => {
+  return {
+    questionnaire_response: {
+      answers_attributes: [
+        {
+          questionnaire_question_id: data.profile[0].question.id,
+          questionnaire_question_alternative_id: data.profile[0].response.id
+        },
+        {
+          questionnaire_question_id: data.health[0].question.id,
+          questionnaire_question_alternative_id: data.health[0].response.id
+        },
+        {
+          questionnaire_question_id: data.health[1].question.id,
+          text_response: data.health[1].response[0]
+        },
+        {
+          questionnaire_question_id: data.health[2].question.id,
+          text_response: data.health[2].response[0]
+        },
+        {
+          questionnaire_question_id: data.health[3].question.id,
+          text_response: data.health[3].response[0]
+        },
+        {
+          questionnaire_question_id: data.health[4].question.id,
+          text_response: data.health[4].response[0]
+        },
+        {
+          questionnaire_question_id: data.modality[0].question.id,
+          questionnaire_question_alternative_ids: data.modality[0].response
+        },
+        {
+          questionnaire_question_id: data.challenge[0].question.id,
+          questionnaire_question_alternative_ids: data.challenge[0].response
+        },
+        {
+          questionnaire_question_id: data.muscle[0].question.id,
+          questionnaire_question_alternative_ids: data.muscle[0].response
+        },
+        ...data.consultant.responsesList.map((question) => {
+          return {
+            questionnaire_question_id: question.id,
+            text_response: question.response
+          }
+        })
+      ]
+    },
+    questionnaire_id: "159",
+    person_id: data.persona.workout_person_id
+  }
+}
+
 export const translateMuscle = (muscles) => {
-  const translate = muscles.map((name) => {
-    switch (name.toLowerCase()) {
+  const responses = _.invert(MUSCLE_QUESTIONS.questions[0].responses);
+
+  const translate = muscles.map((id) => {
+    switch (responses[id].toLowerCase()) {
       case 'tummy':
         return 'Abdomen'
       case 'legs':
