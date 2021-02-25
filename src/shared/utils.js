@@ -212,7 +212,7 @@ export const normalizePersonToAPI = (data) => {
 			gender: data.sex === 'sex-m' ? 'M' : 'F',
 			registry_number: data.document,
 			birthdate: normalizeDate(data.birthday),
-			email: data.email,
+			email: data.email && data.email.toLowerCase(),
 			mobile: data.mobile,
 			address_attributes: {
 				zip: data.address.cep,
@@ -234,7 +234,7 @@ export const normalizePayloadPersonWorkout = (data) => {
   return {
     person: {
       name: data.name,
-      email: data.email,
+      email: data.email && data.email.toLowerCase(),
       registry_number: data.registry_number,
       integration_id: data.integration_id,
       birthday: data.birthdate,
