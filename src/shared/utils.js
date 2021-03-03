@@ -280,6 +280,10 @@ export const normalizePayloadQuestionnaireWorkout = (data) => {
           text_response: data.health[4].response[0]
         },
         {
+          questionnaire_question_id: data.health[5].question.id,
+          questionnaire_question_alternative_id: data.health[5].response.id
+        },
+        {
           questionnaire_question_id: data.modality[0].question.id,
           questionnaire_question_alternative_ids: data.modality[0].response
         },

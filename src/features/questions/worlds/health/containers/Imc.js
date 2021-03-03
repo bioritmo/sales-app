@@ -23,13 +23,29 @@ const HealthImc = () => {
 
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
-  const [imc, setImc] = useState(0);
+  const [imc, setImc] = useState(null);
 
   useEffect(() => {
-    if (imc < 19) return calculatePoints(POINTS_IMC['pointsMin']['points'], true);
-    if (imc > 19 && imc < 25) return calculatePoints(POINTS_IMC['pointsMed']['points'], true);
-    if (imc > 25) return calculatePoints(POINTS_IMC['pointsMax']['points'], true);
+    if(imc === null) { return; }
+
+    if (imc < 19) {
+      calculatePoints(POINTS_IMC['pointsMin']['points'], true);
+      saveIMC(HEALTH_QUESTIONS.questions[5].responses[0]);
+    } else if (imc >= 19 && imc <= 25) {
+      calculatePoints(POINTS_IMC['pointsMed']['points'], true);
+      saveIMC(HEALTH_QUESTIONS.questions[5].responses[1]);
+    } else if (imc > 25) {
+      calculatePoints(POINTS_IMC['pointsMax']['points'], true);
+      saveIMC(HEALTH_QUESTIONS.questions[5].responses[2]);
+    }
   }, [imc])
+
+  function saveIMC(response) {
+    saveResponseWorld('health', {
+      question: HEALTH_QUESTIONS.questions[5],
+      response: response
+    });
+  }
 
   function saveResponse() {
     saveResponseWorld('health', {
@@ -89,7 +105,7 @@ const HealthImc = () => {
               <img src={getStorageItem('persona')['sex'] === 'sex-m' ? walking_m : walking_f} className="img-walking"/>
             </div>
           </Animated>
-          
+
         </div>
       </div>
       <div className="action-imc">

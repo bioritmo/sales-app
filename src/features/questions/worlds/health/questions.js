@@ -122,6 +122,25 @@ export const HEALTH_QUESTIONS = {
 			  "response_type": "range",
 			  "responses": [10, 0]
 		  },
+      {
+        "id": 431,
+        "category": "health",
+        "question": "Digite o seu IMC",
+        "responses": [
+          {
+            id: 1571,
+            text: 'menor que 19 kg/m2',
+          },
+          {
+            id: 1572,
+            text: 'entre 19 kg/m2 até 25 kg/m2',
+          },
+          {
+            id: 1573,
+            text: 'maior que 25 kg/m2',
+          },
+        ]
+      }
     ]
 }
 
