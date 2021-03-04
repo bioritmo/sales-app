@@ -42,12 +42,12 @@ const Challenge = () => {
   useEffect(() => {
     const index = findIndexItem(currentItemText);
     if (operation === 'sum') {
-      if (index === 0 ) return calculatePoints(currentItemPoints, true, 1.5);
-      if (index === 1 ) return calculatePoints(currentItemPoints, true, 1.25);
+      if (index === 0 ) return calculatePoints(currentItemPoints, true, 1.00);
+      if (index === 1 ) return calculatePoints(currentItemPoints, true, 1.00);
       if (index === 2 ) return calculatePoints(currentItemPoints, true, 1.00);
     } else {
-      if (index === 0 ) return calculatePoints(currentItemPoints, false, 1.5);
-      if (index === 1 ) return calculatePoints(currentItemPoints, false, 1.25);
+      if (index === 0 ) return calculatePoints(currentItemPoints, false, 1.00);
+      if (index === 1 ) return calculatePoints(currentItemPoints, false, 1.00);
       if (index === 2 ) return calculatePoints(currentItemPoints, false, 1.00);
     }
 
