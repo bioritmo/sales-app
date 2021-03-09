@@ -23,7 +23,7 @@ const Result = ({ match }) => {
   const canvasRef = useRef(null);
   const microGymRef = useRef(null);
   const fitnessRef = useRef(null);
-  
+
   const [datasets, setDatasets] = useState([]);
   const [datasetsMicroGym, setDatasetsMicroGym] = useState([]);
   const [datasetsFitness, setDatasetsFitness] = useState([]);
@@ -267,18 +267,25 @@ const Result = ({ match }) => {
     window.open(`https://app.bioritmo.com.br/people/${person.id}`, "_blank");
   }
 
+  const load_responses = (question, responses) => (
+    question.responses.reduce((acc, item) => {
+      if (responses.includes(item.id)) return acc.concat(item.title);
+      return acc;
+    }, [])
+  );
+
   useEffect(() => {
     if(isPriting) {
       window.print();
       setIsPriting(false);
-    } 
+    }
   }, [isPriting])
 
   useEffect(() => {
     if(isPritingScreen) {
       printScreen();
       setIsPritingScreen(false);
-    } 
+    }
   }, [isPritingScreen])
 
   function print(){
@@ -298,11 +305,11 @@ const Result = ({ match }) => {
             <div className="responses-user-container">
               <div>
                 <p className="title-question-result">{modality[0].question.question_legend}</p>
-                <p className="response-question-result">{modality[0].response.join(', ')}</p>
+                <p className="response-question-result">{load_responses(modality[0].question, modality[0].response).join(', ')}</p>
               </div>
               <div>
                 <p className="title-question-result">{challenge[0].question.question_legend}</p>
-                <p className="response-question-result">{challenge[0].response.join(', ')}</p>
+                <p className="response-question-result">{load_responses(challenge[0].question, challenge[0].response).join(', ')}</p>
               </div>
               <div>
                 <p className="title-question-result">{activity.question.question_legend}</p>
@@ -351,8 +358,7 @@ const Result = ({ match }) => {
                 ))
               }
             </div>
-            
-          </div>        
+          </div>
         </div>
         {
           !isPriting && !isPritingScreen ? (

@@ -52,7 +52,7 @@ const Muscle = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.main.isLoading || false);
   const message = useSelector(state => state.main.message);
-  
+
   const [groupSelected, setGroupSelected] = useState([]);
   const [selectedQtdItems, setSelectedQtdItems] = useState(0);
   const [selectSex, setSelectSex] = useState(getStorageItem('persona')['sex']);
@@ -78,21 +78,23 @@ const Muscle = () => {
   const [back, setBack] = useState(selectSex === 'sex-m' ? backMan : backWoman);
   const [backSelected, setBackSelected] = useState(selectSex === 'sex-m' ? backManSelected : backWomanSelected);
 
+  const responses = MUSCLE_QUESTIONS.questions[0].responses;
+
   function onSelectGroup(group) {
-    const item = groupSelected.find(i => i === group);
+    const item = groupSelected.find(i => i === responses[group]);
     if (!item && selectedQtdItems < 3) {
-      setGroupSelected([...groupSelected, group]);
+      setGroupSelected([...groupSelected, responses[group]]);
       setSelectedQtdItems(selectedQtdItems + 1);
     } else if (selectedQtdItems === 3 && !item)  {
       alert("Escolha apenas 3 opções.")
     } else {
-      setGroupSelected(groupSelected.filter(i => i !== group));
+      setGroupSelected(groupSelected.filter(i => i !== responses[group]));
       setSelectedQtdItems(selectedQtdItems - 1);
     }
   };
 
   const isGroupSelected = useCallback((group) => {
-    return groupSelected.find(i => i === group);
+    return groupSelected.find(i => i === responses[group]);
   }, [groupSelected]);
 
   function saveResponse() {

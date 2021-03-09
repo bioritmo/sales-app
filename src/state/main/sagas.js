@@ -6,9 +6,17 @@ import { push } from 'connected-react-router';
 import * as types from './constants';
 import * as actions from './actions';
 import { getAddress } from 'services/getAddress';
-import { normalizePersonToAPI, getStorageItem, messageErrorSaga } from 'shared/utils';
-import { savePersonApi, createVisit, saveQuestions } from 'services/bioRitmo';
+import { savePersonApi, savePersonWorkout, createVisit, saveQuestions } from 'services/bioRitmo';
 import { sendEmail } from 'services/sendEmail';
+import {
+  normalizePersonToAPI,
+  normalizePayloadPersonWorkout,
+  normalizePayloadQuestionnaireWorkout,
+  extractIdUrl,
+  getStorage,
+  savePersona,
+  messageErrorSaga
+} from 'shared/utils';
 
 export function* workerStartGame() {
  alert("Start game");
@@ -61,9 +69,11 @@ export function* workerGetAddress(action) {
 export function* workerSavePersonApi(action) {
   const { data } = action.payload;
   try {
-    const response = yield call(savePersonApi, normalizePersonToAPI(data));
-    yield put(actions.registerPersonSuccess(response.data));
-    // yield call(workerCreateVisit, response.data)
+    const response_bio_system = yield call(savePersonApi, normalizePersonToAPI(data));
+    const response_workout = yield call(savePersonWorkout,
+      normalizePayloadPersonWorkout({ ...response_bio_system.data, mobile: data.mobile, location_acronym: data.unity }));
+    yield put(actions.registerPersonSuccess(response_bio_system.data));
+    savePersona({ workout_person_id: extractIdUrl(response_workout.data.url) });
     yield put(actions.nextQuestion("/fim-de-jogo"));
   } catch (error) {
     yield put(actions.registerPersonFailure({}));
@@ -83,18 +93,10 @@ export function* workerCreateVisit(action) {
   }
 }
 
-export function* workerSaveQuestions() {
+export function* workerSaveQuestions(action) {
   try {
-    const people = getStorageItem('persona');
-    const data = {
-      person: {
-        document_number: people.document,
-        document_kind: 'cpf',
-        questionnaire_response: localStorage.getItem('@bioData')
-      }
-    }
-
-    yield call(saveQuestions, data);
+    const payload = normalizePayloadQuestionnaireWorkout(getStorage());
+    yield call(saveQuestions, payload);
   } catch (error) {
     messageErrorSaga(error);
   }

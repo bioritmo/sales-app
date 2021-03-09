@@ -22,16 +22,16 @@ import sociavel_f from 'assets/imgs/avatar_sociavel_f.png';
 import sociavel_animado_f from 'assets/imgs/avatar_sociavel_f.gif';
 
 export const AVATAR_QUESTIONS = {
-  "questions": 
+  "questions":
     [
       {
-        "id": 1,
+        "id": 400,
         "category": "profile",
 			  "question": 'Clique abaixo sobre a imagem que mais te representa.',
         "response_type": "check",
 			  "responses": [
           {
-            id: 1,
+            id: 1513,
             "title": "bem-estar",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? bem_estar_m : bem_estar_f) :
@@ -60,7 +60,7 @@ export const AVATAR_QUESTIONS = {
             ],
           },
           {
-            id: 2,
+            id: 1514,
             "title": "resistencia e energia",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? resistencia_m : resistencia_f):
@@ -89,7 +89,7 @@ export const AVATAR_QUESTIONS = {
             ],
           },
           {
-            id: 3,
+            id: 1515,
             "title": "sociavel",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? sociavel_m : sociavel_f):
@@ -118,7 +118,7 @@ export const AVATAR_QUESTIONS = {
             ],
           },
           {
-            id: 4,
+            id: 1516,
             "title": "estético",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? estetico_m : estetico_f):
@@ -147,7 +147,7 @@ export const AVATAR_QUESTIONS = {
             ],
           },
           {
-            id: 5,
+            id: 1517,
             "title": "espiritual",
             "img": (sex, isAnimation) => !isAnimation ?
               (sex === 'sex-m' ? espiritual_m : espiritual_f):
